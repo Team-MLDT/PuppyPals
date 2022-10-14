@@ -2,6 +2,11 @@
 
 Team members: Mandy Mason, Lucy Gelderloos, Darius Owens, Trevor Stephens
 
+## [Trello Board](https://trello.com/b/GjfyDLAy/final-project)
+
+## [Figma Board](https://www.figma.com/file/drOA50Kq9w8P1cEXeoPDaY/PuppyPals-Prep-4?node-id=0%3A1)
+
+## [Software Requirements](/requirements.md)
 
 ## Cooperation Plan
 
