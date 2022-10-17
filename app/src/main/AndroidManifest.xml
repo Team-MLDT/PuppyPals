@@ -14,7 +14,34 @@
         android:theme="@style/Theme.PuppyPals"
         tools:targetApi="31">
         <activity
-            android:name=".MainActivity"
+            android:name=".AboutPage"
+            android:exported="false" />
+        <activity
+            android:name=".LogIn"
+            android:exported="false" />
+        <activity
+            android:name=".Verify"
+            android:exported="false" />
+        <activity
+            android:name=".SignUP"
+            android:exported="false" />
+        <activity
+            android:name=".UploadImage"
+            android:exported="false" />
+        <activity
+            android:name=".EditProfile"
+            android:exported="false" />
+        <activity
+            android:name=".OtherProfileSettings"
+            android:exported="false" />
+        <activity
+            android:name=".OwnProfileSettings"
+            android:exported="false" />
+        <activity
+            android:name=".EventDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
