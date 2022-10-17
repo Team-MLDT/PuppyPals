@@ -7,7 +7,7 @@
     tools:context=".Activities.SignUP">
 
     <EditText
-        android:id="@+id/signUpActivityEmailInput"
+        android:id="@+id/signupActivityEmailInput"
         android:layout_width="226dp"
         android:layout_height="49dp"
         android:layout_marginTop="61dp"
@@ -15,6 +15,8 @@
         android:ems="10"
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <TextView
@@ -27,11 +29,12 @@
         android:text="email:"
         android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/textView3"
-        app:layout_constraintEnd_toStartOf="@+id/signUpActivityEmailInput"
+        app:layout_constraintEnd_toStartOf="@+id/signupActivityEmailInput"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
-        android:id="@+id/signUpActivityPasswordInput"
+        android:id="@+id/signupActivityPasswordInput"
         android:layout_width="226dp"
         android:layout_height="48dp"
         android:layout_marginTop="63dp"
@@ -39,7 +42,9 @@
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpActivityEmailInput" />
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/signupActivityEmailInput" />
 
     <TextView
         android:id="@+id/textView3"
@@ -51,7 +56,8 @@
         android:text="password:"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/signUpActivityPasswordInput"
+        app:layout_constraintEnd_toStartOf="@+id/signupActivityPasswordInput"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -64,8 +70,21 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/signupActivitySignupButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="72dp"
+        android:layout_marginBottom="119dp"
+        android:text="Sign Up"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signupActivityPasswordInput" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
