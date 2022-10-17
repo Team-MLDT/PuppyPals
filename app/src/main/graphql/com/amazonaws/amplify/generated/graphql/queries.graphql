@@ -1,23 +1,287 @@
 # this is an auto generated file. This will be overwritten
-query GetTodo($id: ID!) {
-  getTodo(id: $id) {
+query GetUser($id: ID!) {
+  getUser(id: $id) {
     id
-    name
-    description
+    username
+    profileImageURL
+    dogs {
+      items {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      nextToken
+    }
+    eventsHosted {
+      items {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
+      nextToken
+    }
+    friends {
+      items {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userFriendsId
+  }
+}
+query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    nextToken
+  }
+}
+query GetDog($id: ID!) {
+  getDog(id: $id) {
+    id
+    dogName
+    profileImageURL
+    owner {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    events {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userDogsId
+  }
+}
+query ListDogs($filter: ModelDogFilterInput, $limit: Int, $nextToken: String) {
+  listDogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    nextToken
+  }
+}
+query GetEvent($id: ID!) {
+  getEvent(id: $id) {
+    id
+    eventDescription
+    lat
+    lon
+    eventDate
+    eventImageURL
+    host {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    dogs {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userEventsHostedId
+  }
+}
+query ListEvents(
+  $filter: ModelEventFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
+    nextToken
+  }
+}
+query GetDogEvents($id: ID!) {
+  getDogEvents(id: $id) {
+    id
+    dogID
+    eventID
+    dog {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    event {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
     createdAt
     updatedAt
   }
 }
-query ListTodos(
-  $filter: ModelTodoFilterInput
+query ListDogEvents(
+  $filter: ModelDogEventsFilterInput
   $limit: Int
   $nextToken: String
 ) {
-  listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
+  listDogEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
     items {
       id
-      name
-      description
+      dogID
+      eventID
+      dog {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      event {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
       createdAt
       updatedAt
     }

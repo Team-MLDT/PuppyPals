@@ -1,36 +1,555 @@
 # this is an auto generated file. This will be overwritten
-mutation CreateTodo(
-  $input: CreateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation CreateUser(
+  $input: CreateUserInput!
+  $condition: ModelUserConditionInput
 ) {
-  createTodo(input: $input, condition: $condition) {
+  createUser(input: $input, condition: $condition) {
     id
-    name
-    description
+    username
+    profileImageURL
+    dogs {
+      items {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      nextToken
+    }
+    eventsHosted {
+      items {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
+      nextToken
+    }
+    friends {
+      items {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userFriendsId
+  }
+}
+mutation UpdateUser(
+  $input: UpdateUserInput!
+  $condition: ModelUserConditionInput
+) {
+  updateUser(input: $input, condition: $condition) {
+    id
+    username
+    profileImageURL
+    dogs {
+      items {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      nextToken
+    }
+    eventsHosted {
+      items {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
+      nextToken
+    }
+    friends {
+      items {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userFriendsId
+  }
+}
+mutation DeleteUser(
+  $input: DeleteUserInput!
+  $condition: ModelUserConditionInput
+) {
+  deleteUser(input: $input, condition: $condition) {
+    id
+    username
+    profileImageURL
+    dogs {
+      items {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      nextToken
+    }
+    eventsHosted {
+      items {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
+      nextToken
+    }
+    friends {
+      items {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userFriendsId
+  }
+}
+mutation CreateDog(
+  $input: CreateDogInput!
+  $condition: ModelDogConditionInput
+) {
+  createDog(input: $input, condition: $condition) {
+    id
+    dogName
+    profileImageURL
+    owner {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    events {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userDogsId
+  }
+}
+mutation UpdateDog(
+  $input: UpdateDogInput!
+  $condition: ModelDogConditionInput
+) {
+  updateDog(input: $input, condition: $condition) {
+    id
+    dogName
+    profileImageURL
+    owner {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    events {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userDogsId
+  }
+}
+mutation DeleteDog(
+  $input: DeleteDogInput!
+  $condition: ModelDogConditionInput
+) {
+  deleteDog(input: $input, condition: $condition) {
+    id
+    dogName
+    profileImageURL
+    owner {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    events {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userDogsId
+  }
+}
+mutation CreateEvent(
+  $input: CreateEventInput!
+  $condition: ModelEventConditionInput
+) {
+  createEvent(input: $input, condition: $condition) {
+    id
+    eventDescription
+    lat
+    lon
+    eventDate
+    eventImageURL
+    host {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    dogs {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userEventsHostedId
+  }
+}
+mutation UpdateEvent(
+  $input: UpdateEventInput!
+  $condition: ModelEventConditionInput
+) {
+  updateEvent(input: $input, condition: $condition) {
+    id
+    eventDescription
+    lat
+    lon
+    eventDate
+    eventImageURL
+    host {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    dogs {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userEventsHostedId
+  }
+}
+mutation DeleteEvent(
+  $input: DeleteEventInput!
+  $condition: ModelEventConditionInput
+) {
+  deleteEvent(input: $input, condition: $condition) {
+    id
+    eventDescription
+    lat
+    lon
+    eventDate
+    eventImageURL
+    host {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    dogs {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userEventsHostedId
+  }
+}
+mutation CreateDogEvents(
+  $input: CreateDogEventsInput!
+  $condition: ModelDogEventsConditionInput
+) {
+  createDogEvents(input: $input, condition: $condition) {
+    id
+    dogID
+    eventID
+    dog {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    event {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
     createdAt
     updatedAt
   }
 }
-mutation UpdateTodo(
-  $input: UpdateTodoInput!
-  $condition: ModelTodoConditionInput
+mutation UpdateDogEvents(
+  $input: UpdateDogEventsInput!
+  $condition: ModelDogEventsConditionInput
 ) {
-  updateTodo(input: $input, condition: $condition) {
+  updateDogEvents(input: $input, condition: $condition) {
     id
-    name
-    description
+    dogID
+    eventID
+    dog {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    event {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
     createdAt
     updatedAt
   }
 }
-mutation DeleteTodo(
-  $input: DeleteTodoInput!
-  $condition: ModelTodoConditionInput
+mutation DeleteDogEvents(
+  $input: DeleteDogEventsInput!
+  $condition: ModelDogEventsConditionInput
 ) {
-  deleteTodo(input: $input, condition: $condition) {
+  deleteDogEvents(input: $input, condition: $condition) {
     id
-    name
-    description
+    dogID
+    eventID
+    dog {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    event {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
     createdAt
     updatedAt
   }
