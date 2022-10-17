@@ -18,13 +18,13 @@ Team members: Mandy Mason, Lucy Gelderloos, Darius Owens, Trevor Stephens
 - Trevor - Backend, being available, and troubleshooting
 
 **How can you best utilize these strengths in the execution of your project?**
-We have all the bases covered and we can simultaneosly complete aspects of the site.
+We have all the bases covered and we can simultaneously complete aspects of the site.
 
 **In which professional competencies do you each want to develop greater strength?**
 
 - Mandy - AWS!!! and how the services interact and work
 - Lucy - Communication/collaboration, AWS, Android Studio
-- Darius - Technical profeciency (AWS and styling)
+- Darius - Technical proficiency (AWS and styling)
 - Trevor -  Technical proficiency/ Confidence, AWS, Android Studio
 
 **Knowing that every person in your team needs to understand all aspects of the project, how do you plan to approach the day-to-day work?**
@@ -35,7 +35,7 @@ Morning meeting to plan the day, going over pull requests together, discussing g
 
 **What will be your group’s process to resolve conflict, when it arises?**  
 
-Bring up any issues in the group slack or talk to someone one-on-one if needed. Open lines of cummunication. Everyone is learning and be understanding of that. If anyone is having issues solving things alone we can use partner programming or sharing screens to figure it out together.  
+Bring up any issues in the group slack or talk to someone one-on-one if needed. Open lines of communication. Everyone is learning and be understanding of that. If anyone is having issues solving things alone we can use partner programming or sharing screens to figure it out together.  
 
 **What will your team do if one person is taking over the project and not letting the other members contribute?**  
 Let them know to delegate tasks more and that they're taking over a bit too much. It's a team effort.  
@@ -58,7 +58,7 @@ Team meeting/ intervention.
 
 All times in PST
 
-- Mandy - ALLDAY!!
+- Mandy - ALL DAY!!
 - Lucy - 9am - 6pm (available through slack)
 - Darius - 9am-6pm (between 2-4:30pm slack only)
 - Trevor - 9am-6pm
@@ -81,7 +81,7 @@ Send a message on slack, if there's no response it's too late probably.
 
 **What is your strategy for ensuring everyone’s voice is heard?**  
 
-Bring up any concerns during the morning standup and adjust accordingly. Anything can also be brought up in slack group chat.   
+Bring up any concerns during the morning stand-up and adjust accordingly. Anything can also be brought up in slack group chat.   
 
 **How will you ensure that you are creating a safe environment where everyone feels comfortable speaking up?**  
 
