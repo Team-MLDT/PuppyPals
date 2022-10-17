@@ -1,27 +1,519 @@
 # this is an auto generated file. This will be overwritten
-subscription OnCreateTodo {
-  onCreateTodo {
+subscription OnCreateUser {
+  onCreateUser {
     id
-    name
-    description
+    username
+    profileImageURL
+    dogs {
+      items {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      nextToken
+    }
+    eventsHosted {
+      items {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
+      nextToken
+    }
+    friends {
+      items {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userFriendsId
+  }
+}
+subscription OnUpdateUser {
+  onUpdateUser {
+    id
+    username
+    profileImageURL
+    dogs {
+      items {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      nextToken
+    }
+    eventsHosted {
+      items {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
+      nextToken
+    }
+    friends {
+      items {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userFriendsId
+  }
+}
+subscription OnDeleteUser {
+  onDeleteUser {
+    id
+    username
+    profileImageURL
+    dogs {
+      items {
+        id
+        dogName
+        profileImageURL
+        createdAt
+        updatedAt
+        userDogsId
+      }
+      nextToken
+    }
+    eventsHosted {
+      items {
+        id
+        eventDescription
+        lat
+        lon
+        eventDate
+        eventImageURL
+        createdAt
+        updatedAt
+        userEventsHostedId
+      }
+      nextToken
+    }
+    friends {
+      items {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userFriendsId
+  }
+}
+subscription OnCreateDog {
+  onCreateDog {
+    id
+    dogName
+    profileImageURL
+    owner {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    events {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userDogsId
+  }
+}
+subscription OnUpdateDog {
+  onUpdateDog {
+    id
+    dogName
+    profileImageURL
+    owner {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    events {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userDogsId
+  }
+}
+subscription OnDeleteDog {
+  onDeleteDog {
+    id
+    dogName
+    profileImageURL
+    owner {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    events {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userDogsId
+  }
+}
+subscription OnCreateEvent {
+  onCreateEvent {
+    id
+    eventDescription
+    lat
+    lon
+    eventDate
+    eventImageURL
+    host {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    dogs {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userEventsHostedId
+  }
+}
+subscription OnUpdateEvent {
+  onUpdateEvent {
+    id
+    eventDescription
+    lat
+    lon
+    eventDate
+    eventImageURL
+    host {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    dogs {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userEventsHostedId
+  }
+}
+subscription OnDeleteEvent {
+  onDeleteEvent {
+    id
+    eventDescription
+    lat
+    lon
+    eventDate
+    eventImageURL
+    host {
+      id
+      username
+      profileImageURL
+      dogs {
+        nextToken
+      }
+      eventsHosted {
+        nextToken
+      }
+      friends {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userFriendsId
+    }
+    dogs {
+      items {
+        id
+        dogID
+        eventID
+        createdAt
+        updatedAt
+      }
+      nextToken
+    }
+    createdAt
+    updatedAt
+    userEventsHostedId
+  }
+}
+subscription OnCreateDogEvents {
+  onCreateDogEvents {
+    id
+    dogID
+    eventID
+    dog {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    event {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
     createdAt
     updatedAt
   }
 }
-subscription OnUpdateTodo {
-  onUpdateTodo {
+subscription OnUpdateDogEvents {
+  onUpdateDogEvents {
     id
-    name
-    description
+    dogID
+    eventID
+    dog {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    event {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
     createdAt
     updatedAt
   }
 }
-subscription OnDeleteTodo {
-  onDeleteTodo {
+subscription OnDeleteDogEvents {
+  onDeleteDogEvents {
     id
-    name
-    description
+    dogID
+    eventID
+    dog {
+      id
+      dogName
+      profileImageURL
+      owner {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      events {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userDogsId
+    }
+    event {
+      id
+      eventDescription
+      lat
+      lon
+      eventDate
+      eventImageURL
+      host {
+        id
+        username
+        profileImageURL
+        createdAt
+        updatedAt
+        userFriendsId
+      }
+      dogs {
+        nextToken
+      }
+      createdAt
+      updatedAt
+      userEventsHostedId
+    }
     createdAt
     updatedAt
   }
