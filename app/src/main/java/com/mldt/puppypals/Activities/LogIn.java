@@ -24,6 +24,7 @@ public class LogIn extends AppCompatActivity {
 
     public void setUpLogInForm(){
         Intent callingIntent = getIntent();
+
         String userEmail = callingIntent.getStringExtra(Verify.VERIFY_ACCOUNT_EMAIL_TAG);
         findViewById(R.id.loginActivityLoginButton).setOnClickListener(view -> {
             String userPassword = ((EditText) findViewById(R.id.loginActivityPasswordInput)).getText().toString();

@@ -15,6 +15,7 @@ public class PuppyPalsAmplifyApplication extends Application {
     public void onCreate(){
         super.onCreate();
         try{
+
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());

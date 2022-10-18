@@ -4,6 +4,7 @@
     package="com.mldt.puppypals">
 
     <application
+        android:name=".PuppyPalsAmplifyApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -49,6 +50,9 @@
             android:exported="false" />
         <activity
             android:name=".Activities.EventDetails"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.LoggedINHome"
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
