@@ -10,26 +10,26 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="48dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="24dp"
-        android:text="User Profile:"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="156dp"
+        android:text="My Profile"
         android:textSize="20sp"
         android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@+id/ownProfileActivityUsernameTV"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ownProfileActivityUserImage"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/ownProfileActivityUsernameTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="156dp"
-        android:layout_marginBottom="93dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="168dp"
+        android:layout_marginBottom="31dp"
         android:text="username"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/ownProfileActivityPetsRV"
+        app:layout_constraintBottom_toTopOf="@+id/textView11"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -37,21 +37,20 @@
         android:id="@+id/textView11"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="285dp"
         android:text="My Pets:"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        tools:layout_editor_absoluteY="110dp" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ownProfileActivityPetsRV"
         android:layout_width="395dp"
         android:layout_height="134dp"
         android:layout_marginTop="24dp"
+        android:background="@color/yellow"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
@@ -60,15 +59,14 @@
         android:id="@+id/textView12"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="46dp"
         android:layout_marginTop="44dp"
-        android:layout_marginEnd="201dp"
         android:layout_marginBottom="16dp"
         android:text="Upcoming Events:"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ownProfileActivityEventsRV"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ownProfileActivityPetsRV" />
 
@@ -77,6 +75,7 @@
         android:layout_width="399dp"
         android:layout_height="109dp"
         android:layout_marginTop="16dp"
+        android:background="@color/purple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -91,4 +90,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/ownProfileActivityUserImage"
+        android:layout_width="74dp"
+        android:layout_height="95dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="66dp"
+        app:layout_constraintBottom_toTopOf="@+id/ownProfileActivityPetsRV"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
