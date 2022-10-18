@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mldt.puppypals">
 
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
+
     <application
         android:name=".PuppyPalsAmplifyApplication"
         android:allowBackup="true"
@@ -15,12 +19,14 @@
         android:theme="@style/Theme.PuppyPals"
         tools:targetApi="31">
         <activity
-            android:name=".Activities.AddEvent"
-            android:exported="false" />
+
+            android:name=".Activities.AddEvent"/>
+
         <meta-data
             android:name="android.app.lib_name"
             android:value="" />
         <activity
+
             android:name=".Activities.AddDog"
             android:exported="false" />
 
@@ -52,7 +58,9 @@
             android:name=".Activities.EventDetails"
             android:exported="false" />
         <activity
-            android:name=".Activities.LoggedInHome"
+            android:name=".Activities.LoggedInHome"/>
+
+
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
