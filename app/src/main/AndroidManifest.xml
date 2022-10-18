@@ -52,7 +52,7 @@
             android:name=".Activities.EventDetails"
             android:exported="false" />
         <activity
-            android:name=".Activities.LoggedINHome"
+            android:name=".Activities.LoggedInHome"
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"

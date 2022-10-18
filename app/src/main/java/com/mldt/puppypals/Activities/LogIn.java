@@ -34,7 +34,7 @@ public class LogIn extends AppCompatActivity {
                     userPassword,
                     success -> {
                         Log.i(TAG, "Login succeeded " + success);
-                        Intent goToLoggedInHomeActivity = new Intent(LogIn.this, LoggedINHome.class);
+                        Intent goToLoggedInHomeActivity = new Intent(LogIn.this, LoggedInHome.class);
                         startActivity(goToLoggedInHomeActivity);
                     },
                     failure -> {
