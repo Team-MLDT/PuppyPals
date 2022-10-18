@@ -1,0 +1,14 @@
+{
+  "resourceName": "puppypals",
+  "policyUUID": "26456e71",
+  "bucketName": "puppypals47c048a1e91b4ed8abdbd7d48feea3c7",
+  "storageAccess": "auth",
+  "guestAccess": [],
+  "authAccess": [
+    "CREATE_AND_UPDATE",
+    "READ",
+    "DELETE"
+  ],
+  "triggerFunction": "NONE",
+  "groupAccess": {}
+}
