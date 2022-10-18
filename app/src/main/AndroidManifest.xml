@@ -14,38 +14,38 @@
         android:theme="@style/Theme.PuppyPals"
         tools:targetApi="31">
         <activity
-            android:name=".AddEvent"
+            android:name=".Activities.AddEvent"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AboutPage"
+            android:name=".Activities.AboutPage"
             android:exported="false" />
         <activity
-            android:name=".LogIn"
+            android:name=".Activities.LogIn"
             android:exported="false" />
         <activity
-            android:name=".Verify"
+            android:name=".Activities.Verify"
             android:exported="false" />
         <activity
-            android:name=".SignUP"
+            android:name=".Activities.SignUp"
             android:exported="false" />
         <activity
-            android:name=".UploadImage"
+            android:name=".Activities.UploadImage"
             android:exported="false" />
         <activity
-            android:name=".EditProfile"
+            android:name=".Activities.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".OtherProfileSettings"
+            android:name=".Activities.OtherProfileSettings"
             android:exported="false" />
         <activity
-            android:name=".OwnProfileSettings"
+            android:name=".Activities.OwnProfileSettings"
             android:exported="false" />
         <activity
-            android:name=".EventDetails"
+            android:name=".Activities.EventDetails"
             android:exported="false" />
         <activity
             android:name=".Activities.MainActivity"
