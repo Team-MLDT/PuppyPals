@@ -3,13 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/mainActivityDropDownSignUp"
-        android:title="Sign Up"
-        />
-    <item
         android:id="@+id/mainActivityDropDownSettings"
-        android:title="Log In"
-        />
+        android:title="Settings" />
     <item
         android:id="@+id/mainActivityDropDownAbout"
         android:title="About"

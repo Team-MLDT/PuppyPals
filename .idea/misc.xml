@@ -4,7 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_log_in.xml" value="0.11543394613082514" />
-        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_main.xml" value="0.625" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/menu/dropdown.xml" value="0.1" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/menu/dropdown_logged_in.xml" value="0.1" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/menu/dropdown_logged_out.xml" value="0.1" />
       </map>
     </option>
   </component>
