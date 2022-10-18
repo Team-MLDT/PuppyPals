@@ -10,7 +10,7 @@
             "authenticationType": "API_KEY",
             "apiKeyConfig": {
               "apiKeyExpirationDays": 7,
-              "apiKeyExpirationDate": "2022-10-24T18:30:16.495Z",
+              "apiKeyExpirationDate": "2022-10-25T17:44:56.009Z",
               "description": ""
             }
           },
@@ -20,7 +20,7 @@
     }
   },
   "auth": {
-    "puppypals7d5b0c24": {
+    "puppypalse18838f6": {
       "service": "Cognito",
       "providerPlugin": "awscloudformation",
       "dependsOn": [],
