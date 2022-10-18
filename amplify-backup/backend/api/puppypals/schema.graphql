@@ -1,0 +1,27 @@
+type User @model {
+  id: ID!
+  username: String!
+  profileImageURL: String
+  dogs: [Dog] @hasMany
+  eventsHosted: [Event] @hasMany
+  friends: [User] @hasMany
+}
+
+type Dog @model {
+  id: ID!
+  dogName: String!
+  profileImageURL: String
+  owner: User @belongsTo
+  events: [Event] @manyToMany(relationName: "DogEvents")
+}
+
+type Event @model {
+  id: ID!
+  eventDescription: String!
+  lat: String!
+  lon: String!
+  eventDate: AWSDateTime!
+  eventImageURL: String
+  host: User @belongsTo
+  dogs: [Dog] @manyToMany(relationName: "DogEvents")
+}
