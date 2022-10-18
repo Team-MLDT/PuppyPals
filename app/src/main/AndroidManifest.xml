@@ -17,6 +17,9 @@
             android:name=".AddDog"
             android:exported="false" />
         <activity
+            android:name=".AddEvent"
+            android:exported="false" />
+        <activity
             android:name=".AboutPage"
             android:exported="false" />
         <activity
