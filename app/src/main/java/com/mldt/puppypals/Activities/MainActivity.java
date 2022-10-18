@@ -22,10 +22,10 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Amplify.Auth.fetchAuthSession(
-//                result -> Log.i("AmplifyQuickstart", result.toString()),
-//                error -> Log.e("AmplifyQuickstart", error.toString())
-//        );
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
     }
 
     public void showPopup(View v){

@@ -19,6 +19,7 @@ public class PuppyPalsAmplifyApplication extends Application {
             Amplify.addPlugin(new AWSApiPlugin());
             Amplify.addPlugin(new AWSCognitoAuthPlugin());
             Amplify.configure(getApplicationContext());
+            Log.i(TAG,"Amplify configured");
         } catch (AmplifyException ae){
             Log.e(TAG, "Error initializing Amplify: " + ae.getMessage(), ae);
         }
