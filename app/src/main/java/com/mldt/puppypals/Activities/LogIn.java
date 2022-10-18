@@ -24,13 +24,15 @@ public class LogIn extends AppCompatActivity {
 
     public void setUpLogInForm(){
         Intent callingIntent = getIntent();
-
         String userEmail = callingIntent.getStringExtra(Verify.VERIFY_ACCOUNT_EMAIL_TAG);
+        EditText emailET = findViewById(R.id.loginActivityEmailInput);
+        emailET.setText(userEmail);
         findViewById(R.id.loginActivityLoginButton).setOnClickListener(view -> {
+            String userSelectedEmail = emailET.getText().toString();
             String userPassword = ((EditText) findViewById(R.id.loginActivityPasswordInput)).getText().toString();
 
             Amplify.Auth.signIn(
-                    userEmail,
+                    userSelectedEmail,
                     userPassword,
                     success -> {
                         Log.i(TAG, "Login succeeded " + success);
