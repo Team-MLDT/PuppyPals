@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.mldt.puppypals.R;
 
-public class LoggedINHome extends AppCompatActivity {
+public class LoggedInHome extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

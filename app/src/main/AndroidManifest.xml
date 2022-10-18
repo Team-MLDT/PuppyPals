@@ -52,6 +52,9 @@
             android:name=".Activities.EventDetails"
             android:exported="false" />
         <activity
+            android:name=".Activities.LoggedInHome"
+            android:exported="false" />
+        <activity
             android:name=".Activities.MainActivity"
             android:exported="true">
             <intent-filter>

@@ -24,6 +24,7 @@ public class LogIn extends AppCompatActivity {
 
     public void setUpLogInForm(){
         Intent callingIntent = getIntent();
+
         String userEmail = callingIntent.getStringExtra(Verify.VERIFY_ACCOUNT_EMAIL_TAG);
         findViewById(R.id.loginActivityLoginButton).setOnClickListener(view -> {
             String userPassword = ((EditText) findViewById(R.id.loginActivityPasswordInput)).getText().toString();
@@ -33,7 +34,7 @@ public class LogIn extends AppCompatActivity {
                     userPassword,
                     success -> {
                         Log.i(TAG, "Login succeeded " + success);
-                        Intent goToLoggedInHomeActivity = new Intent(LogIn.this, LoggedINHome.class);
+                        Intent goToLoggedInHomeActivity = new Intent(LogIn.this, LoggedInHome.class);
                         startActivity(goToLoggedInHomeActivity);
                     },
                     failure -> {
