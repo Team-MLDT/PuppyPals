@@ -14,12 +14,11 @@
         android:theme="@style/Theme.PuppyPals"
         tools:targetApi="31">
         <activity
+            android:name=".AddDog"
+            android:exported="false" />
+        <activity
             android:name=".AddEvent"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity>
+            android:exported="false" />
         <activity
             android:name=".AboutPage"
             android:exported="false" />
