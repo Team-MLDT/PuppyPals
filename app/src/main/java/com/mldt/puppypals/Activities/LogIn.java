@@ -13,6 +13,7 @@ import com.mldt.puppypals.R;
 
 public class LogIn extends AppCompatActivity {
     public static final String TAG = "LogInActivity";
+    //set shared preferences for user email when user log in
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
