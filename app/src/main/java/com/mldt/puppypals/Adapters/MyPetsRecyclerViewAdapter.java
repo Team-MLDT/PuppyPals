@@ -23,7 +23,7 @@ public class MyPetsRecyclerViewAdapter extends RecyclerView.Adapter<MyPetsRecycl
 
     public MyPetsRecyclerViewAdapter(List<Dog> dogList, Context callingActivity){
         this.dogList = dogList;
-        this. callingActivity = callingActivity;
+        this.callingActivity = callingActivity;
     }
 
     @NonNull
