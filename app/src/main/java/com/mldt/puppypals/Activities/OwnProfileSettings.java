@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
+
 import android.util.Log;
+import android.widget.Button;
+
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
@@ -36,6 +40,8 @@ public class OwnProfileSettings extends AppCompatActivity {
         setContentView(R.layout.activity_own_profile_settings);
 
         eventList = new ArrayList<>();
+
+        setUpEditProfileButton();
         getEventsFromDB();
         setUpEventsRecyclerView();
         getDogsFromDB();
@@ -94,5 +100,13 @@ public class OwnProfileSettings extends AppCompatActivity {
         petsRecyclerView.setLayoutManager(layoutManager);
         petAdapter = new MyPetsRecyclerViewAdapter(dogList, this);
         petsRecyclerView.setAdapter(petAdapter);
+    }
+
+    public void setUpEditProfileButton() {
+        Button editButton = findViewById(R.id.ownProfileActivityEditButton);
+        editButton.setOnClickListener(view -> {
+            Intent goToEditProfile = new Intent(OwnProfileSettings.this, EditProfile.class);
+            startActivity(goToEditProfile);
+        });
     }
 }
