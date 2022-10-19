@@ -12,9 +12,9 @@ query GetUser($id: ID!) {
         dogBreed
         dogBio
         profileImageURL
+        ownerID
         createdAt
         updatedAt
-        userDogsId
       }
       nextToken
     }
@@ -26,28 +26,15 @@ query GetUser($id: ID!) {
         lon
         eventDate
         eventTime
+        hostID
         eventImageURL
         createdAt
         updatedAt
-        userEventsHostedId
-      }
-      nextToken
-    }
-    friends {
-      items {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
       }
       nextToken
     }
     createdAt
     updatedAt
-    userFriendsId
   }
 }
 query ListUsers(
@@ -67,12 +54,8 @@ query ListUsers(
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
     nextToken
   }
@@ -84,6 +67,7 @@ query GetDog($id: ID!) {
     dogBreed
     dogBio
     profileImageURL
+    ownerID
     owner {
       id
       username
@@ -95,26 +79,11 @@ query GetDog($id: ID!) {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
-    }
-    events {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     createdAt
     updatedAt
-    userDogsId
   }
 }
 query ListDogs($filter: ModelDogFilterInput, $limit: Int, $nextToken: String) {
@@ -125,6 +94,7 @@ query ListDogs($filter: ModelDogFilterInput, $limit: Int, $nextToken: String) {
       dogBreed
       dogBio
       profileImageURL
+      ownerID
       owner {
         id
         username
@@ -132,14 +102,36 @@ query ListDogs($filter: ModelDogFilterInput, $limit: Int, $nextToken: String) {
         profileImageURL
         createdAt
         updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
       }
       createdAt
       updatedAt
-      userDogsId
+    }
+    nextToken
+  }
+}
+query GetDebugDog($id: ID!) {
+  getDebugDog(id: $id) {
+    id
+    dogName
+    dogBreed
+    dogBio
+    createdAt
+    updatedAt
+  }
+}
+query ListDebugDogs(
+  $filter: ModelDebugDogFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listDebugDogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      dogName
+      dogBreed
+      dogBio
+      createdAt
+      updatedAt
     }
     nextToken
   }
@@ -152,7 +144,7 @@ query GetEvent($id: ID!) {
     lon
     eventDate
     eventTime
-    eventImageURL
+    hostID
     host {
       id
       username
@@ -164,26 +156,12 @@ query GetEvent($id: ID!) {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
-    dogs {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
+    eventImageURL
     createdAt
     updatedAt
-    userEventsHostedId
   }
 }
 query ListEvents(
@@ -199,7 +177,7 @@ query ListEvents(
       lon
       eventDate
       eventTime
-      eventImageURL
+      hostID
       host {
         id
         username
@@ -207,105 +185,8 @@ query ListEvents(
         profileImageURL
         createdAt
         updatedAt
-        userFriendsId
       }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
-    nextToken
-  }
-}
-query GetDogEvents($id: ID!) {
-  getDogEvents(id: $id) {
-    id
-    dogID
-    eventID
-    dog {
-      id
-      dogName
-      dogBreed
-      dogBio
-      profileImageURL
-      owner {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userDogsId
-    }
-    event {
-      id
-      eventDescription
-      lat
-      lon
-      eventDate
-      eventTime
       eventImageURL
-      host {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
-    createdAt
-    updatedAt
-  }
-}
-query ListDogEvents(
-  $filter: ModelDogEventsFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listDogEvents(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      dogID
-      eventID
-      dog {
-        id
-        dogName
-        dogBreed
-        dogBio
-        profileImageURL
-        createdAt
-        updatedAt
-        userDogsId
-      }
-      event {
-        id
-        eventDescription
-        lat
-        lon
-        eventDate
-        eventTime
-        eventImageURL
-        createdAt
-        updatedAt
-        userEventsHostedId
-      }
       createdAt
       updatedAt
     }
