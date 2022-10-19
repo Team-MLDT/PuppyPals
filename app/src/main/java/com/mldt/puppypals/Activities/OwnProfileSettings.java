@@ -38,6 +38,7 @@ public class OwnProfileSettings extends AppCompatActivity {
         eventList = new ArrayList<>();
         getEventsFromDB();
         setUpEventsRecyclerView();
+        getDogsFromDB();
         setUpPetsRecyclerView();
     }
 
@@ -57,6 +58,25 @@ public class OwnProfileSettings extends AppCompatActivity {
                     });
                 },
                 failure -> Log.i(TAG, "Did not read Events successfully " + failure)
+        );
+    }
+
+    private void getDogsFromDB(){
+        Amplify.API.query(
+                ModelQuery.list(Dog.class),
+                success -> {
+                    Log.i(TAG, "Read Dogs successfully");
+                    dogList.clear();
+                    for(Dog dbDog : success.getData()){
+                        if(dbDog.getOwner().equals(currentUser)){
+                            dogList.add(dbDog);
+                        }
+                    }
+                    runOnUiThread(() -> {
+                        petAdapter.notifyDataSetChanged();
+                    });
+                },
+                failure -> Log.i(TAG, "Did not read Dogs successfully " + failure)
         );
     }
 
