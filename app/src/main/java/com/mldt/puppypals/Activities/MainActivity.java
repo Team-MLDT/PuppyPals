@@ -15,11 +15,16 @@ import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.DebugDog;
+import com.amplifyframework.datastore.generated.model.Dog;
+import com.amplifyframework.datastore.generated.model.Event;
 import com.mldt.puppypals.R;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
+    public static final String Tag = "MainActivity";
 
     public AuthUser currentUser = null;
 
@@ -36,6 +41,40 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         currentUser = Amplify.Auth.getCurrentUser();
 
 //        setUpAddDogButton();
+
+        DebugDog testDog = DebugDog.builder()
+                .dogName("new dog")
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(testDog),
+                successResponse -> Log.i(Tag, "DebugDog added!"),
+                failureResponse -> Log.i(Tag, "DebugDog not added: " + failureResponse)
+        );
+
+//        Dog testDog = Dog.builder()
+//                .dogName("dog")
+//                .build();
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(testDog),
+//                successResponse -> Log.i(Tag, "Dog added!"),
+//                failureResponse -> Log.i(Tag, "Dog not added" + failureResponse)
+//        );
+
+        Event testEvent = Event.builder()
+                .eventDescription("Picnic at Golden Gardens Dog Park")
+                .lat("47.690801")
+                .lon("-122.400331")
+                .eventDate("10/22/22")
+                .eventTime("3:00 PM")
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(testEvent),
+                successResponse -> Log.i(Tag, "Event added!"),
+                failureResponse -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failureResponse)
+        );
     }
 
     public void showPopup(View v){

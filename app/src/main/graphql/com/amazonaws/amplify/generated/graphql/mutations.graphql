@@ -15,9 +15,9 @@ mutation CreateUser(
         dogBreed
         dogBio
         profileImageURL
+        ownerID
         createdAt
         updatedAt
-        userDogsId
       }
       nextToken
     }
@@ -29,28 +29,15 @@ mutation CreateUser(
         lon
         eventDate
         eventTime
+        hostID
         eventImageURL
         createdAt
         updatedAt
-        userEventsHostedId
-      }
-      nextToken
-    }
-    friends {
-      items {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
       }
       nextToken
     }
     createdAt
     updatedAt
-    userFriendsId
   }
 }
 mutation UpdateUser(
@@ -69,9 +56,9 @@ mutation UpdateUser(
         dogBreed
         dogBio
         profileImageURL
+        ownerID
         createdAt
         updatedAt
-        userDogsId
       }
       nextToken
     }
@@ -83,28 +70,15 @@ mutation UpdateUser(
         lon
         eventDate
         eventTime
+        hostID
         eventImageURL
         createdAt
         updatedAt
-        userEventsHostedId
-      }
-      nextToken
-    }
-    friends {
-      items {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
       }
       nextToken
     }
     createdAt
     updatedAt
-    userFriendsId
   }
 }
 mutation DeleteUser(
@@ -123,9 +97,9 @@ mutation DeleteUser(
         dogBreed
         dogBio
         profileImageURL
+        ownerID
         createdAt
         updatedAt
-        userDogsId
       }
       nextToken
     }
@@ -137,28 +111,15 @@ mutation DeleteUser(
         lon
         eventDate
         eventTime
+        hostID
         eventImageURL
         createdAt
         updatedAt
-        userEventsHostedId
-      }
-      nextToken
-    }
-    friends {
-      items {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
       }
       nextToken
     }
     createdAt
     updatedAt
-    userFriendsId
   }
 }
 mutation CreateDog(
@@ -171,6 +132,7 @@ mutation CreateDog(
     dogBreed
     dogBio
     profileImageURL
+    ownerID
     owner {
       id
       username
@@ -182,26 +144,11 @@ mutation CreateDog(
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
-    }
-    events {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     createdAt
     updatedAt
-    userDogsId
   }
 }
 mutation UpdateDog(
@@ -214,6 +161,7 @@ mutation UpdateDog(
     dogBreed
     dogBio
     profileImageURL
+    ownerID
     owner {
       id
       username
@@ -225,26 +173,11 @@ mutation UpdateDog(
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
-    }
-    events {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     createdAt
     updatedAt
-    userDogsId
   }
 }
 mutation DeleteDog(
@@ -257,6 +190,7 @@ mutation DeleteDog(
     dogBreed
     dogBio
     profileImageURL
+    ownerID
     owner {
       id
       username
@@ -268,26 +202,50 @@ mutation DeleteDog(
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
-    }
-    events {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     createdAt
     updatedAt
-    userDogsId
+  }
+}
+mutation CreateDebugDog(
+  $input: CreateDebugDogInput!
+  $condition: ModelDebugDogConditionInput
+) {
+  createDebugDog(input: $input, condition: $condition) {
+    id
+    dogName
+    dogBreed
+    dogBio
+    createdAt
+    updatedAt
+  }
+}
+mutation UpdateDebugDog(
+  $input: UpdateDebugDogInput!
+  $condition: ModelDebugDogConditionInput
+) {
+  updateDebugDog(input: $input, condition: $condition) {
+    id
+    dogName
+    dogBreed
+    dogBio
+    createdAt
+    updatedAt
+  }
+}
+mutation DeleteDebugDog(
+  $input: DeleteDebugDogInput!
+  $condition: ModelDebugDogConditionInput
+) {
+  deleteDebugDog(input: $input, condition: $condition) {
+    id
+    dogName
+    dogBreed
+    dogBio
+    createdAt
+    updatedAt
   }
 }
 mutation CreateEvent(
@@ -301,7 +259,7 @@ mutation CreateEvent(
     lon
     eventDate
     eventTime
-    eventImageURL
+    hostID
     host {
       id
       username
@@ -313,26 +271,12 @@ mutation CreateEvent(
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
-    dogs {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
+    eventImageURL
     createdAt
     updatedAt
-    userEventsHostedId
   }
 }
 mutation UpdateEvent(
@@ -346,7 +290,7 @@ mutation UpdateEvent(
     lon
     eventDate
     eventTime
-    eventImageURL
+    hostID
     host {
       id
       username
@@ -358,26 +302,12 @@ mutation UpdateEvent(
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
-    dogs {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
+    eventImageURL
     createdAt
     updatedAt
-    userEventsHostedId
   }
 }
 mutation DeleteEvent(
@@ -391,7 +321,7 @@ mutation DeleteEvent(
     lon
     eventDate
     eventTime
-    eventImageURL
+    hostID
     host {
       id
       username
@@ -403,198 +333,10 @@ mutation DeleteEvent(
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
-    dogs {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    userEventsHostedId
-  }
-}
-mutation CreateDogEvents(
-  $input: CreateDogEventsInput!
-  $condition: ModelDogEventsConditionInput
-) {
-  createDogEvents(input: $input, condition: $condition) {
-    id
-    dogID
-    eventID
-    dog {
-      id
-      dogName
-      dogBreed
-      dogBio
-      profileImageURL
-      owner {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userDogsId
-    }
-    event {
-      id
-      eventDescription
-      lat
-      lon
-      eventDate
-      eventTime
-      eventImageURL
-      host {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation UpdateDogEvents(
-  $input: UpdateDogEventsInput!
-  $condition: ModelDogEventsConditionInput
-) {
-  updateDogEvents(input: $input, condition: $condition) {
-    id
-    dogID
-    eventID
-    dog {
-      id
-      dogName
-      dogBreed
-      dogBio
-      profileImageURL
-      owner {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userDogsId
-    }
-    event {
-      id
-      eventDescription
-      lat
-      lon
-      eventDate
-      eventTime
-      eventImageURL
-      host {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
-    createdAt
-    updatedAt
-  }
-}
-mutation DeleteDogEvents(
-  $input: DeleteDogEventsInput!
-  $condition: ModelDogEventsConditionInput
-) {
-  deleteDogEvents(input: $input, condition: $condition) {
-    id
-    dogID
-    eventID
-    dog {
-      id
-      dogName
-      dogBreed
-      dogBio
-      profileImageURL
-      owner {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userDogsId
-    }
-    event {
-      id
-      eventDescription
-      lat
-      lon
-      eventDate
-      eventTime
-      eventImageURL
-      host {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
+    eventImageURL
     createdAt
     updatedAt
   }
