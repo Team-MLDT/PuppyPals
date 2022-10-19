@@ -9,8 +9,10 @@ import android.util.Log;
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.Dog;
 import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.User;
+import com.mldt.puppypals.Adapters.MyPetsRecyclerViewAdapter;
 import com.mldt.puppypals.Adapters.UpcomingEventsRecyclerViewAdapter;
 import com.mldt.puppypals.R;
 
@@ -21,7 +23,9 @@ public class OwnProfileSettings extends AppCompatActivity {
     public static final String TAG = "OwnProfileSettingsActivity";
 
     List<Event> eventList = null;
-    UpcomingEventsRecyclerViewAdapter adapter;
+    List<Dog> dogList = null;
+    UpcomingEventsRecyclerViewAdapter eventAdapter;
+    MyPetsRecyclerViewAdapter petAdapter;
     User currentUser;
     //currentUser currently not assigned - should be set to the current session user's email address
     //Set in shared preferences
@@ -34,6 +38,7 @@ public class OwnProfileSettings extends AppCompatActivity {
         eventList = new ArrayList<>();
         getEventsFromDB();
         setUpEventsRecyclerView();
+        setUpPetsRecyclerView();
     }
 
     private void getEventsFromDB(){
@@ -48,7 +53,7 @@ public class OwnProfileSettings extends AppCompatActivity {
                         }
                     }
                     runOnUiThread(() -> {
-                        adapter.notifyDataSetChanged();
+                        eventAdapter.notifyDataSetChanged();
                     });
                 },
                 failure -> Log.i(TAG, "Did not read Events successfully " + failure)
@@ -59,7 +64,15 @@ public class OwnProfileSettings extends AppCompatActivity {
         RecyclerView eventsRecyclerView = findViewById(R.id.ownProfileActivityEventsRV);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
         eventsRecyclerView.setLayoutManager(layoutManager);
-        adapter = new UpcomingEventsRecyclerViewAdapter(eventList, this);
-        eventsRecyclerView.setAdapter(adapter);
+        eventAdapter = new UpcomingEventsRecyclerViewAdapter(eventList, this);
+        eventsRecyclerView.setAdapter(eventAdapter);
+    }
+
+    private void setUpPetsRecyclerView(){
+        RecyclerView petsRecyclerView = findViewById(R.id.ownProfileActivityPetsRV);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        petsRecyclerView.setLayoutManager(layoutManager);
+        petAdapter = new MyPetsRecyclerViewAdapter(dogList, this);
+        petsRecyclerView.setAdapter(petAdapter);
     }
 }
