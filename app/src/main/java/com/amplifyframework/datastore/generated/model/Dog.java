@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.annotations.BelongsTo;
-import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
@@ -26,20 +25,20 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "Dogs", authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
+@Index(name = "dogByUser", fields = {"ownerID"})
 public final class Dog implements Model {
   public static final QueryField ID = field("Dog", "id");
   public static final QueryField DOG_NAME = field("Dog", "dogName");
   public static final QueryField DOG_BREED = field("Dog", "dogBreed");
   public static final QueryField DOG_BIO = field("Dog", "dogBio");
   public static final QueryField PROFILE_IMAGE_URL = field("Dog", "profileImageURL");
-  public static final QueryField OWNER = field("Dog", "userDogsId");
+  public static final QueryField OWNER = field("Dog", "ownerID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String dogName;
   private final @ModelField(targetType="String") String dogBreed;
   private final @ModelField(targetType="String") String dogBio;
   private final @ModelField(targetType="String") String profileImageURL;
-  private final @ModelField(targetType="User") @BelongsTo(targetName = "userDogsId", type = User.class) User owner;
-  private final @ModelField(targetType="DogEvents") @HasMany(associatedWith = "dog", type = DogEvents.class) List<DogEvents> events = null;
+  private final @ModelField(targetType="User") @BelongsTo(targetName = "ownerID", type = User.class) User owner;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -64,10 +63,6 @@ public final class Dog implements Model {
   
   public User getOwner() {
       return owner;
-  }
-  
-  public List<DogEvents> getEvents() {
-      return events;
   }
   
   public Temporal.DateTime getCreatedAt() {

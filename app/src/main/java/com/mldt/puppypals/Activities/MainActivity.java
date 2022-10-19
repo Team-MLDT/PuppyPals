@@ -16,17 +16,21 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.DebugDog;
 import com.amplifyframework.datastore.generated.model.Dog;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.User;
 import com.mldt.puppypals.R;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
     public static final String Tag = "MainActivity";
 
-    public AuthUser currentUser = null;
+    public AuthUser currentAuthUser = null;
+    public String currentAuthEmail = "";
+    public User currentUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,26 +38,23 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         setContentView(R.layout.activity_main);
 
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
-        );
-        currentUser = Amplify.Auth.getCurrentUser();
+
 
 //        setUpAddDogButton();
 
-        DebugDog testDog = DebugDog.builder()
-                .dogName("new dog")
-                .build();
-
-        Amplify.API.mutate(
-                ModelMutation.create(testDog),
-                successResponse -> Log.i(Tag, "DebugDog added!"),
-                failureResponse -> Log.i(Tag, "DebugDog not added: " + failureResponse)
-        );
+//        DebugDog testDog = DebugDog.builder()
+//                .dogName("debug dog")
+//                .build();
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(testDog),
+//                successResponse -> Log.i(Tag, "DebugDog added!"),
+//                failureResponse -> Log.i(Tag, "DebugDog not added: " + failureResponse)
+//        );
 
 //        Dog testDog = Dog.builder()
-//                .dogName("dog")
+//                .dogName("another dog")
+//                .owner(currentUser)
 //                .build();
 //
 //        Amplify.API.mutate(
@@ -62,18 +63,48 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 //                failureResponse -> Log.i(Tag, "Dog not added" + failureResponse)
 //        );
 
-        Event testEvent = Event.builder()
-                .eventDescription("Picnic at Golden Gardens Dog Park")
-                .lat("47.690801")
-                .lon("-122.400331")
-                .eventDate("10/22/22")
-                .eventTime("3:00 PM")
-                .build();
+//        Event testEvent = Event.builder()
+//                .eventDescription("Picnic at Golden Gardens Dog Park")
+//                .lat("47.690801")
+//                .lon("-122.400331")
+//                .eventDate("10/22/22")
+//                .eventTime("3:00 PM")
+//                .build();
+//
+//        Amplify.API.mutate(
+//                ModelMutation.create(testEvent),
+//                successResponse -> Log.i(Tag, "Event added!"),
+//                failureResponse -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failureResponse)
+//        );
+    }
 
-        Amplify.API.mutate(
-                ModelMutation.create(testEvent),
-                successResponse -> Log.i(Tag, "Event added!"),
-                failureResponse -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failureResponse)
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Amplify.Auth.fetchAuthSession(
+                result -> Log.i("AmplifyQuickstart", result.toString()),
+                error -> Log.e("AmplifyQuickstart", error.toString())
+        );
+        currentAuthUser = Amplify.Auth.getCurrentUser();
+        currentAuthEmail = currentAuthUser.getUsername();
+
+        Amplify.API.query(
+                ModelQuery.list(User.class,User.USER_EMAIL.eq(currentAuthEmail)),
+                successResponse -> {
+                    System.out.println(successResponse.getData());
+
+                    runOnUiThread(() -> {
+
+                    });
+//                    runOnUiThread(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+//                            MainActivity.this.finish();
+//                        }
+//                    });
+                },
+                failureResponse -> Log.i(Tag, "Did not read Users successfully")
         );
     }
 
