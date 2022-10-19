@@ -1,7 +1,6 @@
 package com.amplifyframework.datastore.generated.model;
 
 import com.amplifyframework.core.model.annotations.BelongsTo;
-import com.amplifyframework.core.model.annotations.HasMany;
 import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
@@ -26,6 +25,7 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 @ModelConfig(pluralName = "Events", authRules = {
   @AuthRule(allow = AuthStrategy.PUBLIC, operations = { ModelOperation.CREATE, ModelOperation.UPDATE, ModelOperation.DELETE, ModelOperation.READ })
 })
+@Index(name = "eventByUser", fields = {"hostID"})
 public final class Event implements Model {
   public static final QueryField ID = field("Event", "id");
   public static final QueryField EVENT_DESCRIPTION = field("Event", "eventDescription");
@@ -33,17 +33,16 @@ public final class Event implements Model {
   public static final QueryField LON = field("Event", "lon");
   public static final QueryField EVENT_DATE = field("Event", "eventDate");
   public static final QueryField EVENT_TIME = field("Event", "eventTime");
+  public static final QueryField HOST = field("Event", "hostID");
   public static final QueryField EVENT_IMAGE_URL = field("Event", "eventImageURL");
-  public static final QueryField HOST = field("Event", "userEventsHostedId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String eventDescription;
   private final @ModelField(targetType="String", isRequired = true) String lat;
   private final @ModelField(targetType="String", isRequired = true) String lon;
   private final @ModelField(targetType="String", isRequired = true) String eventDate;
   private final @ModelField(targetType="String", isRequired = true) String eventTime;
+  private final @ModelField(targetType="User") @BelongsTo(targetName = "hostID", type = User.class) User host;
   private final @ModelField(targetType="String") String eventImageURL;
-  private final @ModelField(targetType="User") @BelongsTo(targetName = "userEventsHostedId", type = User.class) User host;
-  private final @ModelField(targetType="DogEvents") @HasMany(associatedWith = "event", type = DogEvents.class) List<DogEvents> dogs = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -70,16 +69,12 @@ public final class Event implements Model {
       return eventTime;
   }
   
-  public String getEventImageUrl() {
-      return eventImageURL;
-  }
-  
   public User getHost() {
       return host;
   }
   
-  public List<DogEvents> getDogs() {
-      return dogs;
+  public String getEventImageUrl() {
+      return eventImageURL;
   }
   
   public Temporal.DateTime getCreatedAt() {
@@ -90,15 +85,15 @@ public final class Event implements Model {
       return updatedAt;
   }
   
-  private Event(String id, String eventDescription, String lat, String lon, String eventDate, String eventTime, String eventImageURL, User host) {
+  private Event(String id, String eventDescription, String lat, String lon, String eventDate, String eventTime, User host, String eventImageURL) {
     this.id = id;
     this.eventDescription = eventDescription;
     this.lat = lat;
     this.lon = lon;
     this.eventDate = eventDate;
     this.eventTime = eventTime;
-    this.eventImageURL = eventImageURL;
     this.host = host;
+    this.eventImageURL = eventImageURL;
   }
   
   @Override
@@ -115,8 +110,8 @@ public final class Event implements Model {
               ObjectsCompat.equals(getLon(), event.getLon()) &&
               ObjectsCompat.equals(getEventDate(), event.getEventDate()) &&
               ObjectsCompat.equals(getEventTime(), event.getEventTime()) &&
-              ObjectsCompat.equals(getEventImageUrl(), event.getEventImageUrl()) &&
               ObjectsCompat.equals(getHost(), event.getHost()) &&
+              ObjectsCompat.equals(getEventImageUrl(), event.getEventImageUrl()) &&
               ObjectsCompat.equals(getCreatedAt(), event.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), event.getUpdatedAt());
       }
@@ -131,8 +126,8 @@ public final class Event implements Model {
       .append(getLon())
       .append(getEventDate())
       .append(getEventTime())
-      .append(getEventImageUrl())
       .append(getHost())
+      .append(getEventImageUrl())
       .append(getCreatedAt())
       .append(getUpdatedAt())
       .toString()
@@ -149,8 +144,8 @@ public final class Event implements Model {
       .append("lon=" + String.valueOf(getLon()) + ", ")
       .append("eventDate=" + String.valueOf(getEventDate()) + ", ")
       .append("eventTime=" + String.valueOf(getEventTime()) + ", ")
-      .append("eventImageURL=" + String.valueOf(getEventImageUrl()) + ", ")
       .append("host=" + String.valueOf(getHost()) + ", ")
+      .append("eventImageURL=" + String.valueOf(getEventImageUrl()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
       .append("}")
@@ -189,8 +184,8 @@ public final class Event implements Model {
       lon,
       eventDate,
       eventTime,
-      eventImageURL,
-      host);
+      host,
+      eventImageURL);
   }
   public interface EventDescriptionStep {
     LatStep eventDescription(String eventDescription);
@@ -220,8 +215,8 @@ public final class Event implements Model {
   public interface BuildStep {
     Event build();
     BuildStep id(String id);
-    BuildStep eventImageUrl(String eventImageUrl);
     BuildStep host(User host);
+    BuildStep eventImageUrl(String eventImageUrl);
   }
   
 
@@ -232,8 +227,8 @@ public final class Event implements Model {
     private String lon;
     private String eventDate;
     private String eventTime;
-    private String eventImageURL;
     private User host;
+    private String eventImageURL;
     @Override
      public Event build() {
         String id = this.id != null ? this.id : UUID.randomUUID().toString();
@@ -245,8 +240,8 @@ public final class Event implements Model {
           lon,
           eventDate,
           eventTime,
-          eventImageURL,
-          host);
+          host,
+          eventImageURL);
     }
     
     @Override
@@ -285,14 +280,14 @@ public final class Event implements Model {
     }
     
     @Override
-     public BuildStep eventImageUrl(String eventImageUrl) {
-        this.eventImageURL = eventImageUrl;
+     public BuildStep host(User host) {
+        this.host = host;
         return this;
     }
     
     @Override
-     public BuildStep host(User host) {
-        this.host = host;
+     public BuildStep eventImageUrl(String eventImageUrl) {
+        this.eventImageURL = eventImageUrl;
         return this;
     }
     
@@ -308,15 +303,15 @@ public final class Event implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String eventDescription, String lat, String lon, String eventDate, String eventTime, String eventImageUrl, User host) {
+    private CopyOfBuilder(String id, String eventDescription, String lat, String lon, String eventDate, String eventTime, User host, String eventImageUrl) {
       super.id(id);
       super.eventDescription(eventDescription)
         .lat(lat)
         .lon(lon)
         .eventDate(eventDate)
         .eventTime(eventTime)
-        .eventImageUrl(eventImageUrl)
-        .host(host);
+        .host(host)
+        .eventImageUrl(eventImageUrl);
     }
     
     @Override
@@ -345,13 +340,13 @@ public final class Event implements Model {
     }
     
     @Override
-     public CopyOfBuilder eventImageUrl(String eventImageUrl) {
-      return (CopyOfBuilder) super.eventImageUrl(eventImageUrl);
+     public CopyOfBuilder host(User host) {
+      return (CopyOfBuilder) super.host(host);
     }
     
     @Override
-     public CopyOfBuilder host(User host) {
-      return (CopyOfBuilder) super.host(host);
+     public CopyOfBuilder eventImageUrl(String eventImageUrl) {
+      return (CopyOfBuilder) super.eventImageUrl(eventImageUrl);
     }
   }
   

@@ -40,6 +40,7 @@ public class OwnProfileSettings extends AppCompatActivity {
         setContentView(R.layout.activity_own_profile_settings);
 
         eventList = new ArrayList<>();
+        dogList = new ArrayList<>();
 
         setUpEditProfileButton();
         getEventsFromDB();

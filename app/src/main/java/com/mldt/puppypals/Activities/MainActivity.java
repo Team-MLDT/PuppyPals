@@ -11,16 +11,14 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.PopupMenu;
-import android.widget.Toast;
-
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.DebugDog;
-import com.amplifyframework.datastore.generated.model.Dog;
+
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.User;
 import com.mldt.puppypals.R;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
@@ -43,7 +41,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 //        setUpAddDogButton();
 
         DebugDog testDog = DebugDog.builder()
-                .dogName("new dog")
+                .dogName("new dog 6")
                 .build();
 
         Amplify.API.mutate(
@@ -61,19 +59,14 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 //                successResponse -> Log.i(Tag, "Dog added!"),
 //                failureResponse -> Log.i(Tag, "Dog not added" + failureResponse)
 //        );
-
-        Event testEvent = Event.builder()
-                .eventDescription("Picnic at Golden Gardens Dog Park")
-                .lat("47.690801")
-                .lon("-122.400331")
-                .eventDate("10/22/22")
-                .eventTime("3:00 PM")
-                .build();
+//
+        User testUser1 = User.builder()
+                        .username("mandy1").userEmail("mnmason86@gmail.com").build();
 
         Amplify.API.mutate(
-                ModelMutation.create(testEvent),
-                successResponse -> Log.i(Tag, "Event added!"),
-                failureResponse -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failureResponse)
+                ModelMutation.create(testUser1),
+                successResponse -> Log.i(Tag, "User added!"),
+                failureResponse -> Log.i(Tag, "Failed with this response: " + failureResponse)
         );
     }
 

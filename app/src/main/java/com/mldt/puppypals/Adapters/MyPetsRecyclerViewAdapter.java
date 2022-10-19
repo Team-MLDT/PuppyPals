@@ -14,6 +14,7 @@ import com.mldt.puppypals.R;
 
 import org.w3c.dom.Text;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MyPetsRecyclerViewAdapter extends RecyclerView.Adapter<MyPetsRecyclerViewAdapter.MyPetsViewHolder> {
