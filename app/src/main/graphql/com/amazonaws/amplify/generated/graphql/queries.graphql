@@ -3,11 +3,14 @@ query GetUser($id: ID!) {
   getUser(id: $id) {
     id
     username
+    userEmail
     profileImageURL
     dogs {
       items {
         id
         dogName
+        dogBreed
+        dogBio
         profileImageURL
         createdAt
         updatedAt
@@ -33,6 +36,7 @@ query GetUser($id: ID!) {
       items {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -54,6 +58,7 @@ query ListUsers(
     items {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -75,10 +80,13 @@ query GetDog($id: ID!) {
   getDog(id: $id) {
     id
     dogName
+    dogBreed
+    dogBio
     profileImageURL
     owner {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -113,10 +121,13 @@ query ListDogs($filter: ModelDogFilterInput, $limit: Int, $nextToken: String) {
     items {
       id
       dogName
+      dogBreed
+      dogBio
       profileImageURL
       owner {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -143,6 +154,7 @@ query GetEvent($id: ID!) {
     host {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -188,6 +200,7 @@ query ListEvents(
       host {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -211,10 +224,13 @@ query GetDogEvents($id: ID!) {
     dog {
       id
       dogName
+      dogBreed
+      dogBio
       profileImageURL
       owner {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -237,6 +253,7 @@ query GetDogEvents($id: ID!) {
       host {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -266,6 +283,8 @@ query ListDogEvents(
       dog {
         id
         dogName
+        dogBreed
+        dogBio
         profileImageURL
         createdAt
         updatedAt

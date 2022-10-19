@@ -28,9 +28,11 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 public final class User implements Model {
   public static final QueryField ID = field("User", "id");
   public static final QueryField USERNAME = field("User", "username");
+  public static final QueryField USER_EMAIL = field("User", "userEmail");
   public static final QueryField PROFILE_IMAGE_URL = field("User", "profileImageURL");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String username;
+  private final @ModelField(targetType="String", isRequired = true) String userEmail;
   private final @ModelField(targetType="String") String profileImageURL;
   private final @ModelField(targetType="Dog") @HasMany(associatedWith = "owner", type = Dog.class) List<Dog> dogs = null;
   private final @ModelField(targetType="Event") @HasMany(associatedWith = "host", type = Event.class) List<Event> eventsHosted = null;
@@ -43,6 +45,10 @@ public final class User implements Model {
   
   public String getUsername() {
       return username;
+  }
+  
+  public String getUserEmail() {
+      return userEmail;
   }
   
   public String getProfileImageUrl() {
@@ -69,9 +75,10 @@ public final class User implements Model {
       return updatedAt;
   }
   
-  private User(String id, String username, String profileImageURL) {
+  private User(String id, String username, String userEmail, String profileImageURL) {
     this.id = id;
     this.username = username;
+    this.userEmail = userEmail;
     this.profileImageURL = profileImageURL;
   }
   
@@ -85,6 +92,7 @@ public final class User implements Model {
       User user = (User) obj;
       return ObjectsCompat.equals(getId(), user.getId()) &&
               ObjectsCompat.equals(getUsername(), user.getUsername()) &&
+              ObjectsCompat.equals(getUserEmail(), user.getUserEmail()) &&
               ObjectsCompat.equals(getProfileImageUrl(), user.getProfileImageUrl()) &&
               ObjectsCompat.equals(getCreatedAt(), user.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), user.getUpdatedAt());
@@ -96,6 +104,7 @@ public final class User implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getUsername())
+      .append(getUserEmail())
       .append(getProfileImageUrl())
       .append(getCreatedAt())
       .append(getUpdatedAt())
@@ -109,6 +118,7 @@ public final class User implements Model {
       .append("User {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("username=" + String.valueOf(getUsername()) + ", ")
+      .append("userEmail=" + String.valueOf(getUserEmail()) + ", ")
       .append("profileImageURL=" + String.valueOf(getProfileImageUrl()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
@@ -132,6 +142,7 @@ public final class User implements Model {
     return new User(
       id,
       null,
+      null,
       null
     );
   }
@@ -139,10 +150,16 @@ public final class User implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       username,
+      userEmail,
       profileImageURL);
   }
   public interface UsernameStep {
-    BuildStep username(String username);
+    UserEmailStep username(String username);
+  }
+  
+
+  public interface UserEmailStep {
+    BuildStep userEmail(String userEmail);
   }
   
 
@@ -153,9 +170,10 @@ public final class User implements Model {
   }
   
 
-  public static class Builder implements UsernameStep, BuildStep {
+  public static class Builder implements UsernameStep, UserEmailStep, BuildStep {
     private String id;
     private String username;
+    private String userEmail;
     private String profileImageURL;
     @Override
      public User build() {
@@ -164,13 +182,21 @@ public final class User implements Model {
         return new User(
           id,
           username,
+          userEmail,
           profileImageURL);
     }
     
     @Override
-     public BuildStep username(String username) {
+     public UserEmailStep username(String username) {
         Objects.requireNonNull(username);
         this.username = username;
+        return this;
+    }
+    
+    @Override
+     public BuildStep userEmail(String userEmail) {
+        Objects.requireNonNull(userEmail);
+        this.userEmail = userEmail;
         return this;
     }
     
@@ -192,15 +218,21 @@ public final class User implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String username, String profileImageUrl) {
+    private CopyOfBuilder(String id, String username, String userEmail, String profileImageUrl) {
       super.id(id);
       super.username(username)
+        .userEmail(userEmail)
         .profileImageUrl(profileImageUrl);
     }
     
     @Override
      public CopyOfBuilder username(String username) {
       return (CopyOfBuilder) super.username(username);
+    }
+    
+    @Override
+     public CopyOfBuilder userEmail(String userEmail) {
+      return (CopyOfBuilder) super.userEmail(userEmail);
     }
     
     @Override

@@ -3,11 +3,14 @@ subscription OnCreateUser {
   onCreateUser {
     id
     username
+    userEmail
     profileImageURL
     dogs {
       items {
         id
         dogName
+        dogBreed
+        dogBio
         profileImageURL
         createdAt
         updatedAt
@@ -33,6 +36,7 @@ subscription OnCreateUser {
       items {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -49,11 +53,14 @@ subscription OnUpdateUser {
   onUpdateUser {
     id
     username
+    userEmail
     profileImageURL
     dogs {
       items {
         id
         dogName
+        dogBreed
+        dogBio
         profileImageURL
         createdAt
         updatedAt
@@ -79,6 +86,7 @@ subscription OnUpdateUser {
       items {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -95,11 +103,14 @@ subscription OnDeleteUser {
   onDeleteUser {
     id
     username
+    userEmail
     profileImageURL
     dogs {
       items {
         id
         dogName
+        dogBreed
+        dogBio
         profileImageURL
         createdAt
         updatedAt
@@ -125,6 +136,7 @@ subscription OnDeleteUser {
       items {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -141,10 +153,13 @@ subscription OnCreateDog {
   onCreateDog {
     id
     dogName
+    dogBreed
+    dogBio
     profileImageURL
     owner {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -178,10 +193,13 @@ subscription OnUpdateDog {
   onUpdateDog {
     id
     dogName
+    dogBreed
+    dogBio
     profileImageURL
     owner {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -215,10 +233,13 @@ subscription OnDeleteDog {
   onDeleteDog {
     id
     dogName
+    dogBreed
+    dogBio
     profileImageURL
     owner {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -259,6 +280,7 @@ subscription OnCreateEvent {
     host {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -299,6 +321,7 @@ subscription OnUpdateEvent {
     host {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -339,6 +362,7 @@ subscription OnDeleteEvent {
     host {
       id
       username
+      userEmail
       profileImageURL
       dogs {
         nextToken
@@ -376,10 +400,13 @@ subscription OnCreateDogEvents {
     dog {
       id
       dogName
+      dogBreed
+      dogBio
       profileImageURL
       owner {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -402,6 +429,7 @@ subscription OnCreateDogEvents {
       host {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -426,10 +454,13 @@ subscription OnUpdateDogEvents {
     dog {
       id
       dogName
+      dogBreed
+      dogBio
       profileImageURL
       owner {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -452,6 +483,7 @@ subscription OnUpdateDogEvents {
       host {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -476,10 +508,13 @@ subscription OnDeleteDogEvents {
     dog {
       id
       dogName
+      dogBreed
+      dogBio
       profileImageURL
       owner {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
@@ -502,6 +537,7 @@ subscription OnDeleteDogEvents {
       host {
         id
         username
+        userEmail
         profileImageURL
         createdAt
         updatedAt
