@@ -29,10 +29,14 @@ import static com.amplifyframework.core.model.query.predicate.QueryField.field;
 public final class Dog implements Model {
   public static final QueryField ID = field("Dog", "id");
   public static final QueryField DOG_NAME = field("Dog", "dogName");
+  public static final QueryField DOG_BREED = field("Dog", "dogBreed");
+  public static final QueryField DOG_BIO = field("Dog", "dogBio");
   public static final QueryField PROFILE_IMAGE_URL = field("Dog", "profileImageURL");
   public static final QueryField OWNER = field("Dog", "userDogsId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String dogName;
+  private final @ModelField(targetType="String") String dogBreed;
+  private final @ModelField(targetType="String") String dogBio;
   private final @ModelField(targetType="String") String profileImageURL;
   private final @ModelField(targetType="User") @BelongsTo(targetName = "userDogsId", type = User.class) User owner;
   private final @ModelField(targetType="DogEvents") @HasMany(associatedWith = "dog", type = DogEvents.class) List<DogEvents> events = null;
@@ -44,6 +48,14 @@ public final class Dog implements Model {
   
   public String getDogName() {
       return dogName;
+  }
+  
+  public String getDogBreed() {
+      return dogBreed;
+  }
+  
+  public String getDogBio() {
+      return dogBio;
   }
   
   public String getProfileImageUrl() {
@@ -66,9 +78,11 @@ public final class Dog implements Model {
       return updatedAt;
   }
   
-  private Dog(String id, String dogName, String profileImageURL, User owner) {
+  private Dog(String id, String dogName, String dogBreed, String dogBio, String profileImageURL, User owner) {
     this.id = id;
     this.dogName = dogName;
+    this.dogBreed = dogBreed;
+    this.dogBio = dogBio;
     this.profileImageURL = profileImageURL;
     this.owner = owner;
   }
@@ -83,6 +97,8 @@ public final class Dog implements Model {
       Dog dog = (Dog) obj;
       return ObjectsCompat.equals(getId(), dog.getId()) &&
               ObjectsCompat.equals(getDogName(), dog.getDogName()) &&
+              ObjectsCompat.equals(getDogBreed(), dog.getDogBreed()) &&
+              ObjectsCompat.equals(getDogBio(), dog.getDogBio()) &&
               ObjectsCompat.equals(getProfileImageUrl(), dog.getProfileImageUrl()) &&
               ObjectsCompat.equals(getOwner(), dog.getOwner()) &&
               ObjectsCompat.equals(getCreatedAt(), dog.getCreatedAt()) &&
@@ -95,6 +111,8 @@ public final class Dog implements Model {
     return new StringBuilder()
       .append(getId())
       .append(getDogName())
+      .append(getDogBreed())
+      .append(getDogBio())
       .append(getProfileImageUrl())
       .append(getOwner())
       .append(getCreatedAt())
@@ -109,6 +127,8 @@ public final class Dog implements Model {
       .append("Dog {")
       .append("id=" + String.valueOf(getId()) + ", ")
       .append("dogName=" + String.valueOf(getDogName()) + ", ")
+      .append("dogBreed=" + String.valueOf(getDogBreed()) + ", ")
+      .append("dogBio=" + String.valueOf(getDogBio()) + ", ")
       .append("profileImageURL=" + String.valueOf(getProfileImageUrl()) + ", ")
       .append("owner=" + String.valueOf(getOwner()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
@@ -134,6 +154,8 @@ public final class Dog implements Model {
       id,
       null,
       null,
+      null,
+      null,
       null
     );
   }
@@ -141,6 +163,8 @@ public final class Dog implements Model {
   public CopyOfBuilder copyOfBuilder() {
     return new CopyOfBuilder(id,
       dogName,
+      dogBreed,
+      dogBio,
       profileImageURL,
       owner);
   }
@@ -152,6 +176,8 @@ public final class Dog implements Model {
   public interface BuildStep {
     Dog build();
     BuildStep id(String id);
+    BuildStep dogBreed(String dogBreed);
+    BuildStep dogBio(String dogBio);
     BuildStep profileImageUrl(String profileImageUrl);
     BuildStep owner(User owner);
   }
@@ -160,6 +186,8 @@ public final class Dog implements Model {
   public static class Builder implements DogNameStep, BuildStep {
     private String id;
     private String dogName;
+    private String dogBreed;
+    private String dogBio;
     private String profileImageURL;
     private User owner;
     @Override
@@ -169,6 +197,8 @@ public final class Dog implements Model {
         return new Dog(
           id,
           dogName,
+          dogBreed,
+          dogBio,
           profileImageURL,
           owner);
     }
@@ -177,6 +207,18 @@ public final class Dog implements Model {
      public BuildStep dogName(String dogName) {
         Objects.requireNonNull(dogName);
         this.dogName = dogName;
+        return this;
+    }
+    
+    @Override
+     public BuildStep dogBreed(String dogBreed) {
+        this.dogBreed = dogBreed;
+        return this;
+    }
+    
+    @Override
+     public BuildStep dogBio(String dogBio) {
+        this.dogBio = dogBio;
         return this;
     }
     
@@ -204,9 +246,11 @@ public final class Dog implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String dogName, String profileImageUrl, User owner) {
+    private CopyOfBuilder(String id, String dogName, String dogBreed, String dogBio, String profileImageUrl, User owner) {
       super.id(id);
       super.dogName(dogName)
+        .dogBreed(dogBreed)
+        .dogBio(dogBio)
         .profileImageUrl(profileImageUrl)
         .owner(owner);
     }
@@ -214,6 +258,16 @@ public final class Dog implements Model {
     @Override
      public CopyOfBuilder dogName(String dogName) {
       return (CopyOfBuilder) super.dogName(dogName);
+    }
+    
+    @Override
+     public CopyOfBuilder dogBreed(String dogBreed) {
+      return (CopyOfBuilder) super.dogBreed(dogBreed);
+    }
+    
+    @Override
+     public CopyOfBuilder dogBio(String dogBio) {
+      return (CopyOfBuilder) super.dogBio(dogBio);
     }
     
     @Override

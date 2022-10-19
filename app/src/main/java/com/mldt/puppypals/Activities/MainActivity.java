@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 error -> Log.e("AmplifyQuickstart", error.toString())
         );
         currentUser = Amplify.Auth.getCurrentUser();
+
+//        setUpAddDogButton();
     }
 
     public void showPopup(View v){
@@ -91,4 +94,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
     }
+
+//  for testing add dog functionality
+//    public void setUpAddDogButton() {
+//        Button addDogButton = findViewById(R.id.testAddDogButton);
+//        addDogButton.setOnClickListener(view -> {
+//            Intent goToAddDog = new Intent(MainActivity.this, AddDog.class);
+//            startActivity(goToAddDog);
+//        });
+//    }
 }

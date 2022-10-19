@@ -8,9 +8,11 @@ import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.auth.AuthUserAttributeKey;
 import com.amplifyframework.auth.options.AuthSignUpOptions;
 import com.amplifyframework.core.Amplify;
+import com.amplifyframework.datastore.generated.model.User;
 import com.mldt.puppypals.R;
 
 public class SignUp extends AppCompatActivity {
@@ -47,6 +49,17 @@ public class SignUp extends AppCompatActivity {
                         Log.i(TAG, "Signup failed with email " + userEmail + " with message: " + failure);
                         runOnUiThread(() -> Toast.makeText(SignUp.this, "Signup Failed", Toast.LENGTH_SHORT).show());
                     }
+            );
+
+            User newUser = User.builder()
+                    .username(userEmail)
+                    .userEmail(userEmail)
+                    .build();
+
+            Amplify.API.mutate(
+                    ModelMutation.create(newUser),
+                    successResponse -> Log.i(TAG, "User added!"),
+                    failureResponse -> Log.i(TAG, "Failed to add user with this response: " + failureResponse)
             );
         });
     }
