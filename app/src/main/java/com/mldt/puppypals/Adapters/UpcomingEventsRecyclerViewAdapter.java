@@ -15,7 +15,6 @@ import com.amplifyframework.datastore.generated.model.Event;
 import com.mldt.puppypals.Activities.EventDetails;
 import com.mldt.puppypals.R;
 
-import org.w3c.dom.Text;
 
 import java.util.List;
 

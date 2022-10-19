@@ -23,6 +23,8 @@ public class OwnProfileSettings extends AppCompatActivity {
     List<Event> eventList = null;
     UpcomingEventsRecyclerViewAdapter adapter;
     User currentUser;
+    //currentUser currently not assigned - should be set to the current session user's email address
+    //Set in shared preferences
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +44,6 @@ public class OwnProfileSettings extends AppCompatActivity {
                     eventList.clear();
                     for(Event dbEvent : success.getData()){
                         if(dbEvent.getHost().equals(currentUser)){
-                            //currentUser currently not assigned - should be set to the current session user
                             eventList.add(dbEvent);
                         }
                     }

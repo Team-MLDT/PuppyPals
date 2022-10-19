@@ -1,2 +1,4 @@
-package com.mldt.puppypals.Adapters;public class OtherPetsRecyclerViewAdapter {
+package com.mldt.puppypals.Adapters;
+
+public class OtherPetsRecyclerViewAdapter {
 }
