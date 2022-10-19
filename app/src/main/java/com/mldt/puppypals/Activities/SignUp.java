@@ -6,8 +6,10 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -30,11 +32,15 @@ public class SignUp extends AppCompatActivity {
     public static final String LOCATION_TAG = "Location";
     public static final String TAG = "SignUpActivity";
     public static final String SIGNUP_EMAIL_TAG = "Signup_Email_Tag";
+    public static final String SIGNUP_ID_TAG = "Signup_Id_Tag";
+    SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setUpSignUpForm();
 
@@ -98,6 +104,8 @@ public class SignUp extends AppCompatActivity {
                     }
             );
 
+            SharedPreferences.Editor preferenceEditor =preferences.edit();
+
             User newUser = User.builder()
                     .username(userEmail)
                     .userEmail(userEmail)
@@ -105,7 +113,7 @@ public class SignUp extends AppCompatActivity {
 
             Amplify.API.mutate(
                     ModelMutation.create(newUser),
-                    successResponse -> Log.i(TAG, "User added!"),
+                    successResponse -> preferenceEditor.putString(SIGNUP_ID_TAG, successResponse.getData().getId()),
                     failureResponse -> Log.i(TAG, "Failed to add user with this response: " + failureResponse)
             );
         });
