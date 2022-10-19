@@ -12,9 +12,9 @@ subscription OnCreateUser {
         dogBreed
         dogBio
         profileImageURL
+        ownerID
         createdAt
         updatedAt
-        userDogsId
       }
       nextToken
     }
@@ -26,28 +26,15 @@ subscription OnCreateUser {
         lon
         eventDate
         eventTime
+        hostID
         eventImageURL
         createdAt
         updatedAt
-        userEventsHostedId
-      }
-      nextToken
-    }
-    friends {
-      items {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
       }
       nextToken
     }
     createdAt
     updatedAt
-    userFriendsId
   }
 }
 subscription OnUpdateUser {
@@ -63,9 +50,9 @@ subscription OnUpdateUser {
         dogBreed
         dogBio
         profileImageURL
+        ownerID
         createdAt
         updatedAt
-        userDogsId
       }
       nextToken
     }
@@ -77,28 +64,15 @@ subscription OnUpdateUser {
         lon
         eventDate
         eventTime
+        hostID
         eventImageURL
         createdAt
         updatedAt
-        userEventsHostedId
-      }
-      nextToken
-    }
-    friends {
-      items {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
       }
       nextToken
     }
     createdAt
     updatedAt
-    userFriendsId
   }
 }
 subscription OnDeleteUser {
@@ -114,9 +88,9 @@ subscription OnDeleteUser {
         dogBreed
         dogBio
         profileImageURL
+        ownerID
         createdAt
         updatedAt
-        userDogsId
       }
       nextToken
     }
@@ -128,28 +102,15 @@ subscription OnDeleteUser {
         lon
         eventDate
         eventTime
+        hostID
         eventImageURL
         createdAt
         updatedAt
-        userEventsHostedId
-      }
-      nextToken
-    }
-    friends {
-      items {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
       }
       nextToken
     }
     createdAt
     updatedAt
-    userFriendsId
   }
 }
 subscription OnCreateDog {
@@ -159,6 +120,7 @@ subscription OnCreateDog {
     dogBreed
     dogBio
     profileImageURL
+    ownerID
     owner {
       id
       username
@@ -170,26 +132,11 @@ subscription OnCreateDog {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
-    }
-    events {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     createdAt
     updatedAt
-    userDogsId
   }
 }
 subscription OnUpdateDog {
@@ -199,6 +146,7 @@ subscription OnUpdateDog {
     dogBreed
     dogBio
     profileImageURL
+    ownerID
     owner {
       id
       username
@@ -210,26 +158,11 @@ subscription OnUpdateDog {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
-    }
-    events {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     createdAt
     updatedAt
-    userDogsId
   }
 }
 subscription OnDeleteDog {
@@ -239,6 +172,7 @@ subscription OnDeleteDog {
     dogBreed
     dogBio
     profileImageURL
+    ownerID
     owner {
       id
       username
@@ -250,26 +184,41 @@ subscription OnDeleteDog {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
-    }
-    events {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
     }
     createdAt
     updatedAt
-    userDogsId
+  }
+}
+subscription OnCreateDebugDog {
+  onCreateDebugDog {
+    id
+    dogName
+    dogBreed
+    dogBio
+    createdAt
+    updatedAt
+  }
+}
+subscription OnUpdateDebugDog {
+  onUpdateDebugDog {
+    id
+    dogName
+    dogBreed
+    dogBio
+    createdAt
+    updatedAt
+  }
+}
+subscription OnDeleteDebugDog {
+  onDeleteDebugDog {
+    id
+    dogName
+    dogBreed
+    dogBio
+    createdAt
+    updatedAt
   }
 }
 subscription OnCreateEvent {
@@ -280,7 +229,7 @@ subscription OnCreateEvent {
     lon
     eventDate
     eventTime
-    eventImageURL
+    hostID
     host {
       id
       username
@@ -292,26 +241,12 @@ subscription OnCreateEvent {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
-    dogs {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
+    eventImageURL
     createdAt
     updatedAt
-    userEventsHostedId
   }
 }
 subscription OnUpdateEvent {
@@ -322,7 +257,7 @@ subscription OnUpdateEvent {
     lon
     eventDate
     eventTime
-    eventImageURL
+    hostID
     host {
       id
       username
@@ -334,26 +269,12 @@ subscription OnUpdateEvent {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
-    dogs {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
+    eventImageURL
     createdAt
     updatedAt
-    userEventsHostedId
   }
 }
 subscription OnDeleteEvent {
@@ -364,7 +285,7 @@ subscription OnDeleteEvent {
     lon
     eventDate
     eventTime
-    eventImageURL
+    hostID
     host {
       id
       username
@@ -376,189 +297,10 @@ subscription OnDeleteEvent {
       eventsHosted {
         nextToken
       }
-      friends {
-        nextToken
-      }
       createdAt
       updatedAt
-      userFriendsId
     }
-    dogs {
-      items {
-        id
-        dogID
-        eventID
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-    createdAt
-    updatedAt
-    userEventsHostedId
-  }
-}
-subscription OnCreateDogEvents {
-  onCreateDogEvents {
-    id
-    dogID
-    eventID
-    dog {
-      id
-      dogName
-      dogBreed
-      dogBio
-      profileImageURL
-      owner {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userDogsId
-    }
-    event {
-      id
-      eventDescription
-      lat
-      lon
-      eventDate
-      eventTime
-      eventImageURL
-      host {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnUpdateDogEvents {
-  onUpdateDogEvents {
-    id
-    dogID
-    eventID
-    dog {
-      id
-      dogName
-      dogBreed
-      dogBio
-      profileImageURL
-      owner {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userDogsId
-    }
-    event {
-      id
-      eventDescription
-      lat
-      lon
-      eventDate
-      eventTime
-      eventImageURL
-      host {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
-    createdAt
-    updatedAt
-  }
-}
-subscription OnDeleteDogEvents {
-  onDeleteDogEvents {
-    id
-    dogID
-    eventID
-    dog {
-      id
-      dogName
-      dogBreed
-      dogBio
-      profileImageURL
-      owner {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      events {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userDogsId
-    }
-    event {
-      id
-      eventDescription
-      lat
-      lon
-      eventDate
-      eventTime
-      eventImageURL
-      host {
-        id
-        username
-        userEmail
-        profileImageURL
-        createdAt
-        updatedAt
-        userFriendsId
-      }
-      dogs {
-        nextToken
-      }
-      createdAt
-      updatedAt
-      userEventsHostedId
-    }
+    eventImageURL
     createdAt
     updatedAt
   }

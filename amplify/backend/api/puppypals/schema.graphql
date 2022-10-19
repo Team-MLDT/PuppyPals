@@ -4,9 +4,8 @@ type User @model @auth(rules: [{allow: public}]) {
   username: String!
   userEmail: String!
   profileImageURL: String
-  dogs: [Dog] @hasMany
-  eventsHosted: [Event] @hasMany
-  friends: [User] @hasMany
+  dogs: [Dog] @hasMany(indexName: "dogByUser", fields: ["id"])
+  eventsHosted: [Event] @hasMany(indexName: "eventByUser", fields: ["id"])
 }
 
 type Dog @model @auth(rules: [{allow: public}]) {
@@ -15,8 +14,15 @@ type Dog @model @auth(rules: [{allow: public}]) {
   dogBreed: String
   dogBio: String
   profileImageURL: String
-  owner: User @belongsTo
-  events: [Event] @manyToMany(relationName: "DogEvents")
+  ownerID: ID! @index(name: "dogByUser")
+  owner: User @belongsTo(fields: ["ownerID"])
+}
+
+type DebugDog @model @auth(rules: [{allow: public}]) {
+  id: ID!
+  dogName: String!
+  dogBreed: String
+  dogBio: String
 }
 
 type Event @model @auth(rules: [{allow: public}])  {
@@ -26,7 +32,7 @@ type Event @model @auth(rules: [{allow: public}])  {
   lon: String!
   eventDate: String!
   eventTime: String!
+  hostID: ID! @index(name: "eventByUser")
+  host: User @belongsTo(fields: ["hostID"])
   eventImageURL: String
-  host: User @belongsTo
-  dogs: [Dog] @manyToMany(relationName: "DogEvents")
 }
