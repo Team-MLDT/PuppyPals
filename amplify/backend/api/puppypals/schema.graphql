@@ -2,6 +2,7 @@
 type User @model @auth(rules: [{allow: public}]) {
   id: ID!
   username: String!
+  userEmail: String!
   profileImageURL: String
   dogs: [Dog] @hasMany
   eventsHosted: [Event] @hasMany
@@ -11,6 +12,8 @@ type User @model @auth(rules: [{allow: public}]) {
 type Dog @model @auth(rules: [{allow: public}]) {
   id: ID!
   dogName: String!
+  dogBreed: String
+  dogBio: String
   profileImageURL: String
   owner: User @belongsTo
   events: [Event] @manyToMany(relationName: "DogEvents")
