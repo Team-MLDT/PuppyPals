@@ -28,6 +28,7 @@ mutation CreateUser(
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt
@@ -81,6 +82,7 @@ mutation UpdateUser(
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt
@@ -134,6 +136,7 @@ mutation DeleteUser(
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt
@@ -297,6 +300,7 @@ mutation CreateEvent(
     lat
     lon
     eventDate
+    eventTime
     eventImageURL
     host {
       id
@@ -341,6 +345,7 @@ mutation UpdateEvent(
     lat
     lon
     eventDate
+    eventTime
     eventImageURL
     host {
       id
@@ -385,6 +390,7 @@ mutation DeleteEvent(
     lat
     lon
     eventDate
+    eventTime
     eventImageURL
     host {
       id
@@ -455,6 +461,7 @@ mutation CreateDogEvents(
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id
@@ -512,6 +519,7 @@ mutation UpdateDogEvents(
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id
@@ -569,6 +577,7 @@ mutation DeleteDogEvents(
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id

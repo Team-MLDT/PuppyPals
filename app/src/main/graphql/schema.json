@@ -1747,7 +1747,23 @@
                             "name": null,
                             "ofType": {
                                 "kind": "SCALAR",
-                                "name": "AWSDateTime",
+                                "name": "String",
+                                "ofType": null
+                            }
+                        },
+                        "isDeprecated": false,
+                        "deprecationReason": null
+                    },
+                    {
+                        "name": "eventTime",
+                        "description": null,
+                        "args": [],
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
                                 "ofType": null
                             }
                         },
@@ -1939,6 +1955,16 @@
                     },
                     {
                         "name": "eventDate",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelStringInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eventTime",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -3238,7 +3264,21 @@
                             "name": null,
                             "ofType": {
                                 "kind": "SCALAR",
-                                "name": "AWSDateTime",
+                                "name": "String",
+                                "ofType": null
+                            }
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eventTime",
+                        "description": null,
+                        "type": {
+                            "kind": "NON_NULL",
+                            "name": null,
+                            "ofType": {
+                                "kind": "SCALAR",
+                                "name": "String",
                                 "ofType": null
                             }
                         },
@@ -3307,6 +3347,16 @@
                     },
                     {
                         "name": "eventDate",
+                        "description": null,
+                        "type": {
+                            "kind": "INPUT_OBJECT",
+                            "name": "ModelStringInput",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eventTime",
                         "description": null,
                         "type": {
                             "kind": "INPUT_OBJECT",
@@ -3433,7 +3483,17 @@
                         "description": null,
                         "type": {
                             "kind": "SCALAR",
-                            "name": "AWSDateTime",
+                            "name": "String",
+                            "ofType": null
+                        },
+                        "defaultValue": null
+                    },
+                    {
+                        "name": "eventTime",
+                        "description": null,
+                        "type": {
+                            "kind": "SCALAR",
+                            "name": "String",
                             "ofType": null
                         },
                         "defaultValue": null

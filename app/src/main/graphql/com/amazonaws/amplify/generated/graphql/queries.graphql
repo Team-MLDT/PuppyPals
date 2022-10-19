@@ -25,6 +25,7 @@ query GetUser($id: ID!) {
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt
@@ -150,6 +151,7 @@ query GetEvent($id: ID!) {
     lat
     lon
     eventDate
+    eventTime
     eventImageURL
     host {
       id
@@ -196,6 +198,7 @@ query ListEvents(
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id
@@ -249,6 +252,7 @@ query GetDogEvents($id: ID!) {
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id
@@ -296,6 +300,7 @@ query ListDogEvents(
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt

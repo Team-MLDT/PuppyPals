@@ -1,8 +1,8 @@
 package com.amplifyframework.datastore.generated.model;
 
-import com.amplifyframework.core.model.temporal.Temporal;
 import com.amplifyframework.core.model.annotations.BelongsTo;
 import com.amplifyframework.core.model.annotations.HasMany;
+import com.amplifyframework.core.model.temporal.Temporal;
 
 import java.util.List;
 import java.util.UUID;
@@ -32,13 +32,15 @@ public final class Event implements Model {
   public static final QueryField LAT = field("Event", "lat");
   public static final QueryField LON = field("Event", "lon");
   public static final QueryField EVENT_DATE = field("Event", "eventDate");
+  public static final QueryField EVENT_TIME = field("Event", "eventTime");
   public static final QueryField EVENT_IMAGE_URL = field("Event", "eventImageURL");
   public static final QueryField HOST = field("Event", "userEventsHostedId");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String eventDescription;
   private final @ModelField(targetType="String", isRequired = true) String lat;
   private final @ModelField(targetType="String", isRequired = true) String lon;
-  private final @ModelField(targetType="AWSDateTime", isRequired = true) Temporal.DateTime eventDate;
+  private final @ModelField(targetType="String", isRequired = true) String eventDate;
+  private final @ModelField(targetType="String", isRequired = true) String eventTime;
   private final @ModelField(targetType="String") String eventImageURL;
   private final @ModelField(targetType="User") @BelongsTo(targetName = "userEventsHostedId", type = User.class) User host;
   private final @ModelField(targetType="DogEvents") @HasMany(associatedWith = "event", type = DogEvents.class) List<DogEvents> dogs = null;
@@ -60,8 +62,12 @@ public final class Event implements Model {
       return lon;
   }
   
-  public Temporal.DateTime getEventDate() {
+  public String getEventDate() {
       return eventDate;
+  }
+  
+  public String getEventTime() {
+      return eventTime;
   }
   
   public String getEventImageUrl() {
@@ -84,12 +90,13 @@ public final class Event implements Model {
       return updatedAt;
   }
   
-  private Event(String id, String eventDescription, String lat, String lon, Temporal.DateTime eventDate, String eventImageURL, User host) {
+  private Event(String id, String eventDescription, String lat, String lon, String eventDate, String eventTime, String eventImageURL, User host) {
     this.id = id;
     this.eventDescription = eventDescription;
     this.lat = lat;
     this.lon = lon;
     this.eventDate = eventDate;
+    this.eventTime = eventTime;
     this.eventImageURL = eventImageURL;
     this.host = host;
   }
@@ -107,6 +114,7 @@ public final class Event implements Model {
               ObjectsCompat.equals(getLat(), event.getLat()) &&
               ObjectsCompat.equals(getLon(), event.getLon()) &&
               ObjectsCompat.equals(getEventDate(), event.getEventDate()) &&
+              ObjectsCompat.equals(getEventTime(), event.getEventTime()) &&
               ObjectsCompat.equals(getEventImageUrl(), event.getEventImageUrl()) &&
               ObjectsCompat.equals(getHost(), event.getHost()) &&
               ObjectsCompat.equals(getCreatedAt(), event.getCreatedAt()) &&
@@ -122,6 +130,7 @@ public final class Event implements Model {
       .append(getLat())
       .append(getLon())
       .append(getEventDate())
+      .append(getEventTime())
       .append(getEventImageUrl())
       .append(getHost())
       .append(getCreatedAt())
@@ -139,6 +148,7 @@ public final class Event implements Model {
       .append("lat=" + String.valueOf(getLat()) + ", ")
       .append("lon=" + String.valueOf(getLon()) + ", ")
       .append("eventDate=" + String.valueOf(getEventDate()) + ", ")
+      .append("eventTime=" + String.valueOf(getEventTime()) + ", ")
       .append("eventImageURL=" + String.valueOf(getEventImageUrl()) + ", ")
       .append("host=" + String.valueOf(getHost()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
@@ -167,6 +177,7 @@ public final class Event implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -177,6 +188,7 @@ public final class Event implements Model {
       lat,
       lon,
       eventDate,
+      eventTime,
       eventImageURL,
       host);
   }
@@ -196,7 +208,12 @@ public final class Event implements Model {
   
 
   public interface EventDateStep {
-    BuildStep eventDate(Temporal.DateTime eventDate);
+    EventTimeStep eventDate(String eventDate);
+  }
+  
+
+  public interface EventTimeStep {
+    BuildStep eventTime(String eventTime);
   }
   
 
@@ -208,12 +225,13 @@ public final class Event implements Model {
   }
   
 
-  public static class Builder implements EventDescriptionStep, LatStep, LonStep, EventDateStep, BuildStep {
+  public static class Builder implements EventDescriptionStep, LatStep, LonStep, EventDateStep, EventTimeStep, BuildStep {
     private String id;
     private String eventDescription;
     private String lat;
     private String lon;
-    private Temporal.DateTime eventDate;
+    private String eventDate;
+    private String eventTime;
     private String eventImageURL;
     private User host;
     @Override
@@ -226,6 +244,7 @@ public final class Event implements Model {
           lat,
           lon,
           eventDate,
+          eventTime,
           eventImageURL,
           host);
     }
@@ -252,9 +271,16 @@ public final class Event implements Model {
     }
     
     @Override
-     public BuildStep eventDate(Temporal.DateTime eventDate) {
+     public EventTimeStep eventDate(String eventDate) {
         Objects.requireNonNull(eventDate);
         this.eventDate = eventDate;
+        return this;
+    }
+    
+    @Override
+     public BuildStep eventTime(String eventTime) {
+        Objects.requireNonNull(eventTime);
+        this.eventTime = eventTime;
         return this;
     }
     
@@ -282,12 +308,13 @@ public final class Event implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String eventDescription, String lat, String lon, Temporal.DateTime eventDate, String eventImageUrl, User host) {
+    private CopyOfBuilder(String id, String eventDescription, String lat, String lon, String eventDate, String eventTime, String eventImageUrl, User host) {
       super.id(id);
       super.eventDescription(eventDescription)
         .lat(lat)
         .lon(lon)
         .eventDate(eventDate)
+        .eventTime(eventTime)
         .eventImageUrl(eventImageUrl)
         .host(host);
     }
@@ -308,8 +335,13 @@ public final class Event implements Model {
     }
     
     @Override
-     public CopyOfBuilder eventDate(Temporal.DateTime eventDate) {
+     public CopyOfBuilder eventDate(String eventDate) {
       return (CopyOfBuilder) super.eventDate(eventDate);
+    }
+    
+    @Override
+     public CopyOfBuilder eventTime(String eventTime) {
+      return (CopyOfBuilder) super.eventTime(eventTime);
     }
     
     @Override

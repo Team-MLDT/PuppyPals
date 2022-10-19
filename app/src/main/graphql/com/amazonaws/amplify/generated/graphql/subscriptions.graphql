@@ -25,6 +25,7 @@ subscription OnCreateUser {
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt
@@ -75,6 +76,7 @@ subscription OnUpdateUser {
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt
@@ -125,6 +127,7 @@ subscription OnDeleteUser {
         lat
         lon
         eventDate
+        eventTime
         eventImageURL
         createdAt
         updatedAt
@@ -276,6 +279,7 @@ subscription OnCreateEvent {
     lat
     lon
     eventDate
+    eventTime
     eventImageURL
     host {
       id
@@ -317,6 +321,7 @@ subscription OnUpdateEvent {
     lat
     lon
     eventDate
+    eventTime
     eventImageURL
     host {
       id
@@ -358,6 +363,7 @@ subscription OnDeleteEvent {
     lat
     lon
     eventDate
+    eventTime
     eventImageURL
     host {
       id
@@ -425,6 +431,7 @@ subscription OnCreateDogEvents {
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id
@@ -479,6 +486,7 @@ subscription OnUpdateDogEvents {
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id
@@ -533,6 +541,7 @@ subscription OnDeleteDogEvents {
       lat
       lon
       eventDate
+      eventTime
       eventImageURL
       host {
         id
