@@ -43,8 +43,8 @@ public class UpcomingEventsRecyclerViewAdapter extends RecyclerView.Adapter<Upco
         upcomingEventsTitleTV.setText(eventDesc);
 
         TextView upcomingEventsDateTV = holder.itemView.findViewById(R.id.upcomingEventsFragmentDate);
-//        Temporal.DateTime eventDate = eventList.get(position).getEventDate();
-//        upcomingEventsDateTV.setText(eventDate.toString());
+        String eventDate = eventList.get(position).getEventDate();
+        upcomingEventsDateTV.setText(eventDate.toString());
 
         View eventsViewHolder = holder.itemView;
         eventsViewHolder.setOnClickListener(view -> {
