@@ -16,17 +16,24 @@ import android.widget.PopupMenu;
 import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.DebugDog;
 import com.amplifyframework.datastore.generated.model.Dog;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.User;
 import com.mldt.puppypals.R;
+
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
     public static final String Tag = "MainActivity";
 
-    public AuthUser currentUser = null;
+    public AuthUser currentAuthUser = null;
+    public String currentAuthEmail = "";
+    public User currentUser = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,53 +41,43 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         setContentView(R.layout.activity_main);
 
-        Amplify.Auth.fetchAuthSession(
-                result -> Log.i("AmplifyQuickstart", result.toString()),
-                error -> Log.e("AmplifyQuickstart", error.toString())
-        );
-        currentUser = Amplify.Auth.getCurrentUser();
+        if(Amplify.Auth.getCurrentUser() != null) {
+            Amplify.Auth.fetchAuthSession(
+                    result -> Log.i("AmplifyQuickstart", result.toString()),
+                    error -> Log.e("AmplifyQuickstart", error.toString())
+            );
+            currentAuthUser = Amplify.Auth.getCurrentUser();
+            currentAuthEmail = currentAuthUser.getUsername();
 
-//        setUpAddDogButton();
+            Amplify.API.query(
+                    ModelQuery.list(User.class),
+                    successResponse -> {
+                        System.out.println(successResponse.getData());
+                        for (User dbUser : successResponse.getData()) {
+                            if(dbUser.getUserEmail().equals(currentAuthEmail)) {
+                                currentUser = dbUser;
+                                System.out.println(currentUser);
+                            }
+                        }
 
-        DebugDog testDog = DebugDog.builder()
-                .dogName("new dog")
-                .build();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    },
+                    failureResponse -> Log.i(Tag, "Did not read Users successfully")
+            );
+        }
 
-        Amplify.API.mutate(
-                ModelMutation.create(testDog),
-                successResponse -> Log.i(Tag, "DebugDog added!"),
-                failureResponse -> Log.i(Tag, "DebugDog not added: " + failureResponse)
-        );
-
-//        Dog testDog = Dog.builder()
-//                .dogName("dog")
-//                .build();
-//
-//        Amplify.API.mutate(
-//                ModelMutation.create(testDog),
-//                successResponse -> Log.i(Tag, "Dog added!"),
-//                failureResponse -> Log.i(Tag, "Dog not added" + failureResponse)
-//        );
-
-        Event testEvent = Event.builder()
-                .eventDescription("Picnic at Golden Gardens Dog Park")
-                .lat("47.690801")
-                .lon("-122.400331")
-                .eventDate("10/22/22")
-                .eventTime("3:00 PM")
-                .build();
-
-        Amplify.API.mutate(
-                ModelMutation.create(testEvent),
-                successResponse -> Log.i(Tag, "Event added!"),
-                failureResponse -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failureResponse)
-        );
+        setUpAddDogButton();
     }
 
     public void showPopup(View v){
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
-        if(currentUser == null) {
+        if(currentAuthUser == null) {
             inflater.inflate(R.menu.dropdown_logged_out, popup.getMenu());
         } else {
             inflater.inflate(R.menu.dropdown_logged_in, popup.getMenu());
@@ -134,12 +131,11 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         startActivity(goToProfile);
     }
 
-//  for testing add dog functionality
-//    public void setUpAddDogButton() {
-//        Button addDogButton = findViewById(R.id.testAddDogButton);
-//        addDogButton.setOnClickListener(view -> {
-//            Intent goToAddDog = new Intent(MainActivity.this, AddDog.class);
-//            startActivity(goToAddDog);
-//        });
-//    }
+    public void setUpAddDogButton() {
+        Button addEventButton = findViewById(R.id.mainActivityTestAddEventButton);
+        addEventButton.setOnClickListener(view -> {
+            Intent goToAddDog = new Intent(MainActivity.this,AddDog.class);
+            startActivity(goToAddDog);
+        });
+    }
 }

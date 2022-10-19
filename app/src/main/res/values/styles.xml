@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="YellowButton" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/yellow_darkest</item>
+        <item name="android:color">@color/yellow</item>
+        <item name="android:colorAccent">@color/yellow</item>
+        <item name="android:background">@color/yellow</item>
+        <item name="android:backgroundTint">@color/yellow</item>
+        <item name="android:drawable">@color/yellow</item>
+    </style>
+</resources>

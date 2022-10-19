@@ -3,20 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_add_dog.xml" value="0.1" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_edit_profile.xml" value="0.1" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_log_in.xml" value="0.11543394613082514" />
-        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_main.xml" value="0.335" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_other_profile_settings.xml" value="0.1" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_own_profile_settings.xml" value="0.1" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/menu/dropdown.xml" value="0.1" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/menu/dropdown_logged_in.xml" value="0.1" />
         <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/menu/dropdown_logged_out.xml" value="0.1" />
-
-        <entry key="..\:/Users/dariu/codefellows/puppyPals/PuppyPals/app/src/main/res/layout/activity_add_event.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/dariu/codefellows/puppyPals/PuppyPals/app/src/main/res/layout/activity_event_details.xml" value="0.19722222222222222" />
-        <entry key="..\:/Users/lucyg/AndroidStudioProjects/PuppyPals/app/src/main/res/layout/activity_main.xml" value="0.625" />
       </map>
     </option>
   </component>
