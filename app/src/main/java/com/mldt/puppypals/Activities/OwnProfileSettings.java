@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
@@ -35,6 +36,8 @@ public class OwnProfileSettings extends AppCompatActivity {
     UpcomingEventsRecyclerViewAdapter eventAdapter;
     MyPetsRecyclerViewAdapter petAdapter;
 
+    String userName;
+    TextView userNameTV;
     User currentUser;
     String userID = "";
     //currentUser currently not assigned - should be set to the current session user's email address
@@ -71,6 +74,15 @@ public class OwnProfileSettings extends AppCompatActivity {
         setUpEventsRecyclerView();
         getDogsFromDB();
         setUpPetsRecyclerView();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        userName = preferences.getString(EditProfile.USER_NAME_TAG, "userName");
+        userNameTV = findViewById(R.id.ownProfileActivityUsernameTV);
+        userNameTV.setText(userName);
     }
 
     private void getEventsFromDB(){
