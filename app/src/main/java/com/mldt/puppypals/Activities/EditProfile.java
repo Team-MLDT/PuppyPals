@@ -2,6 +2,7 @@ package com.mldt.puppypals.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 
@@ -22,5 +23,9 @@ public class EditProfile extends AppCompatActivity {
 
     public void setUpAddDogButton() {
         Button addDogButton = findViewById(R.id.editProfileActivityAddPetButton);
+        addDogButton.setOnClickListener(view -> {
+            Intent goToAddDogActivity = new Intent(EditProfile.this, AddDog.class);
+            startActivity(goToAddDogActivity);
+        });
     }
 }

@@ -43,9 +43,10 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation 'androidx.test:rules:1.4.1-alpha07'
 
+    implementation 'com.google.android.gms:play-services-location:20.0.0'
+
 //    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:1.1.5'
 
-   implementation 'com.google.android.gms:play-services-location:20.0.0'
 
     implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
