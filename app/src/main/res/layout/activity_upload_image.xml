@@ -2,28 +2,50 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/upLoadImageView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Activities.UploadImage">
 
     <Button
-        android:id="@+id/addImageButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add"
-        tools:layout_editor_absoluteX="175dp"
-        tools:layout_editor_absoluteY="386dp" />
+        android:id="@+id/saveImageButton"
+        android:layout_width="123dp"
+        android:layout_height="63dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="442dp"
+        android:layout_marginBottom="98dp"
+        android:text=" Save Image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addUploadImageButton"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="157dp"
-        android:layout_height="170dp"
-        android:layout_marginTop="109dp"
-        android:layout_marginBottom="107dp"
-        app:layout_constraintBottom_toTopOf="@+id/addImageButton"
+        android:id="@+id/upLoadImageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="151dp"
+        android:layout_marginBottom="201dp"
+        app:layout_constraintBottom_toTopOf="@+id/saveImageButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <Button
+        android:id="@+id/addUploadImageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="209dp"
+        android:layout_marginEnd="118dp"
+        android:layout_marginBottom="105dp"
+        android:text="Add Image"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/saveImageButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/upLoadImageView" />
 </androidx.constraintlayout.widget.ConstraintLayout>

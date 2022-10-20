@@ -33,13 +33,22 @@ public class UploadImage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upload_image);
-
+        setUpSaveButton();
         setupAddImageButton();
+    }
+    private void setUpSaveButton(){
+        findViewById(R.id.saveImageButton).setOnClickListener(view ->{
+            saveDog(s3ImageKey);
+        });
+
     }
 
     private void setupAddImageButton(){
-       findViewById(R.id.addImageButton).setOnClickListener(view ->{
-           saveDog(s3ImageKey);
+
+
+       findViewById(R.id.addUploadImageButton).setOnClickListener(view ->{
+
+           launchImageSelectionIntent();
        });
     }
 
