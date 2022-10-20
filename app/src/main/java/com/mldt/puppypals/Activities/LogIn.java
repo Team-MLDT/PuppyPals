@@ -13,6 +13,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -39,8 +40,8 @@ public class LogIn extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setUpLogInForm();
-
-        
+        setUpHomeButton();
+    }
 
     public void setUpLogInForm(){
         Intent callingIntent = getIntent();
@@ -68,6 +69,13 @@ public class LogIn extends AppCompatActivity {
                         });
                     }
             );
+        });
+    }
+    public void setUpHomeButton(){
+        Button homeButton = findViewById(R.id.loginActivityHomeButton);
+        homeButton.setOnClickListener(view -> {
+            Intent goToMainActivity = new Intent(LogIn.this, MainActivity.class);
+            startActivity(goToMainActivity);
         });
     }
 }

@@ -6,14 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".Activities.LogIn">
 
+    <Button
+        android:id="@+id/loginActivityHomeButton"
+        android:layout_width="68dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="327dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:backgroundTint="@color/pink"
+        android:text="Home"
+        android:textAlignment="center"
+        android:textSize="10sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/textView14"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
+        android:background="@drawable/textview_border"
+        android:padding="7sp"
+        android:paddingHorizontal="7sp"
         android:text="Log In To Your Account"
         android:textAlignment="center"
         android:textSize="20sp"
+
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.502"

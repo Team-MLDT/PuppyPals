@@ -12,6 +12,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="116dp"
         android:text="Verify Account"
+        android:background="@drawable/textview_border"
+        android:padding="7sp"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
