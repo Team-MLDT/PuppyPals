@@ -82,14 +82,16 @@
 
     <EditText
         android:id="@+id/addDogActivityDogBioETM"
-        android:layout_width="319dp"
-        android:layout_height="100dp"
+        android:layout_width="310dp"
+        android:layout_height="56dp"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="15dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
+        app:layout_constraintBottom_toTopOf="@+id/editProfileActivityUserImageIV2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/addDogActivityDogBioTV"
         app:layout_constraintTop_toBottomOf="@+id/addDogActivityDogBreedET" />
@@ -98,22 +100,21 @@
         android:id="@+id/addDogActivitySaveBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="42dp"
         android:text="Save"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/addDogActivityProfilePicBtn" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <ImageView
         android:id="@+id/editProfileActivityUserImageIV2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
+        android:layout_width="159dp"
+        android:layout_height="123dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="18dp"
+        android:visibility="visible"
+        app:layout_constraintBottom_toTopOf="@+id/addDogActivityProfilePicBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,12 +125,10 @@
         android:id="@+id/addDogActivityProfilePicBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="18dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="18dp"
         android:text="Change Photo"
+        app:layout_constraintBottom_toTopOf="@+id/addDogActivitySaveBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editProfileActivityUserImageIV2" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

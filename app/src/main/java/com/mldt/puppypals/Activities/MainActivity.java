@@ -5,41 +5,47 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
-import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
-import com.amplifyframework.datastore.generated.model.DebugDog;
-import com.amplifyframework.datastore.generated.model.Dog;
-import com.amplifyframework.datastore.generated.model.Event;
+
 import com.amplifyframework.datastore.generated.model.User;
 import com.mldt.puppypals.R;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
+import java.util.concurrent.CompletableFuture;
+
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
     public static final String Tag = "MainActivity";
+    public static final String USER_ID_TAG = "";
 
     public AuthUser currentAuthUser = null;
     public String currentAuthEmail = "";
     public User currentUser = null;
+    CompletableFuture<User> userFuture = null;
+
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        currentAuthUser = Amplify.Auth.getCurrentUser();
+        userFuture = new CompletableFuture<>();
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         if(Amplify.Auth.getCurrentUser() != null) {
             Amplify.Auth.fetchAuthSession(
@@ -56,22 +62,26 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         for (User dbUser : successResponse.getData()) {
                             if(dbUser.getUserEmail().equals(currentAuthEmail)) {
                                 currentUser = dbUser;
-                                System.out.println(currentUser);
+                                SharedPreferences.Editor preferenceEditor = preferences.edit();
+                                preferenceEditor.putString(USER_ID_TAG, currentUser.getId());
+                                System.out.println(USER_ID_TAG);
                             }
                         }
+                        userFuture.complete(currentUser);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     },
-                    failureResponse -> Log.i(Tag, "Did not read Users successfully")
+                    failureResponse -> {
+                        userFuture.complete(null);
+                        Log.i(Tag, "Did not read Users successfully");
+                    }
             );
         }
-
-        setUpAddDogButton();
     }
 
     public void showPopup(View v){
@@ -129,13 +139,5 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public void goToProfileActivity(){
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
-    }
-
-    public void setUpAddDogButton() {
-        Button addEventButton = findViewById(R.id.mainActivityTestAddEventButton);
-        addEventButton.setOnClickListener(view -> {
-            Intent goToAddDog = new Intent(MainActivity.this,AddDog.class);
-            startActivity(goToAddDog);
-        });
     }
 }
