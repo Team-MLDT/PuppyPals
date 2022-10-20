@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
@@ -62,23 +64,39 @@ public class AddEvent extends AppCompatActivity {
             }
             Log.i(Tag, "Latitude: " + location.getLatitude());
             Log.i(Tag, "Longitude: " + location.getLongitude());
+        });
 
-            Event newEvent = Event.builder()
-                    .eventDescription("Description")
-                    .lat("Latitude")
-                    .lon("Longitude")
-                    .eventDate("Date")
-                    .eventTime("Time")
-                    .eventImageUrl("ImageUrl")
-                    .build();
+        setUpSubmitButton();
+    }
 
-            Amplify.API.mutate(
-                    ModelMutation.create(newEvent),
-                    success -> Log.i(Tag,"Add Event made Successfully"),
-                    failure -> Log.i(Tag, "failed to add event")
-            );
-                Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
+
+    public void setUpSubmitButton() {
+
+        Button addNewEventButton = findViewById(R.id.addEventActivitySaveButton);
+        addNewEventButton.setOnClickListener(view -> {
+            String eventTitle = ((EditText) findViewById(R.id.addEventActivityTitleInput)).getText().toString();
+            String eventDate = ((EditText) findViewById(R.id.addEventActivityDateInput)).getText().toString();
+
+            // class as API representation of location (only properties are lat & lon)
 
         });
+
+        Event newEvent = Event.builder()
+                .eventDescription("Description")
+                .lat("Latitude")
+                .lon("Longitude")
+                .eventDate("Date")
+                .eventTime("Time")
+                .eventImageUrl("ImageUrl")
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(newEvent),
+                success -> Log.i(Tag,"Add Event made Successfully"),
+                failure -> Log.i(Tag, "failed to add event")
+        );
+        Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
+
     }
+
 }
