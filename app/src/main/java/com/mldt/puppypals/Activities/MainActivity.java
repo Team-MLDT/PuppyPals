@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
             );
         }
 
-        setUpAddDogButton();
     }
 
     public void showPopup(View v){
@@ -129,13 +128,5 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public void goToProfileActivity(){
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
-    }
-
-    public void setUpAddDogButton() {
-        Button addEventButton = findViewById(R.id.mainActivityTestAddEventButton);
-        addEventButton.setOnClickListener(view -> {
-            Intent goToAddDog = new Intent(MainActivity.this,AddDog.class);
-            startActivity(goToAddDog);
-        });
     }
 }
