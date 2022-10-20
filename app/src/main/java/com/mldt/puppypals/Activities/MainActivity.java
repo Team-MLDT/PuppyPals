@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                                 currentUser = dbUser;
                                 SharedPreferences.Editor preferenceEditor = preferences.edit();
                                 preferenceEditor.putString(USER_ID_TAG, currentUser.getId());
-                                System.out.println(currentUser);
                                 System.out.println(USER_ID_TAG);
                             }
                         }
