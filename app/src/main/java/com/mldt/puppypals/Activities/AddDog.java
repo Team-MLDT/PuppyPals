@@ -64,7 +64,7 @@ public class AddDog extends AppCompatActivity {
                         for (User dbUser : successResponse.getData()) {
                             if(dbUser.getUserEmail().equals(currentAuthEmail)) {
                                 currentUser = dbUser;
-                                System.out.println(currentUser);
+                                System.out.println("Current user: " + currentUser);
                             }
                         }
                         userFuture.complete(currentUser);

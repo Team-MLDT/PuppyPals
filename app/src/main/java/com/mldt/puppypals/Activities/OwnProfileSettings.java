@@ -11,9 +11,11 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Dog;
 import com.amplifyframework.datastore.generated.model.Event;
@@ -33,19 +35,24 @@ public class OwnProfileSettings extends AppCompatActivity {
     List<Dog> dogList = null;
     UpcomingEventsRecyclerViewAdapter eventAdapter;
     MyPetsRecyclerViewAdapter petAdapter;
+
+    String userName;
+    TextView userNameTV;
     User currentUser;
     String userID = "";
     //currentUser currently not assigned - should be set to the current session user's email address
     //Set in shared preferences
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_own_profile_settings);
+
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 //        userID = preferences.getString(MainActivity.USER_ID_TAG,"");
-        userID = "1f2d1472-b86f-4a47-b852-8e93bcf42f9c";
+        userID = "0cfc51b2-41fe-4322-a79c-3054c780d096";
 
         Amplify.API.query(
                 ModelQuery.get(User.class,userID),
@@ -67,6 +74,15 @@ public class OwnProfileSettings extends AppCompatActivity {
         setUpEventsRecyclerView();
         getDogsFromDB();
         setUpPetsRecyclerView();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        userName = preferences.getString(EditProfile.USER_NAME_TAG, "userName");
+        userNameTV = findViewById(R.id.ownProfileActivityUsernameTV);
+        userNameTV.setText(userName);
     }
 
     private void getEventsFromDB(){
