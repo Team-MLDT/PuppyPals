@@ -1,9 +1,15 @@
 package com.mldt.puppypals.Activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
+
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
+
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
@@ -11,9 +17,15 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.amplifyframework.core.Amplify;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.location.Priority;
+import com.google.android.gms.tasks.CancellationToken;
+import com.google.android.gms.tasks.OnTokenCanceledListener;
 import com.mldt.puppypals.R;
 
 public class LogIn extends AppCompatActivity {
+    
     public static final String TAG = "LogInActivity";
     public static final String USER_EMAIL_TAG= "";
     SharedPreferences preferences;
@@ -27,7 +39,8 @@ public class LogIn extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setUpLogInForm();
-    }
+
+        
 
     public void setUpLogInForm(){
         Intent callingIntent = getIntent();

@@ -42,10 +42,14 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+
         currentAuthUser = Amplify.Auth.getCurrentUser();
         userFuture = new CompletableFuture<>();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
 
         if(Amplify.Auth.getCurrentUser() != null) {
             Amplify.Auth.fetchAuthSession(
@@ -62,26 +66,23 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         for (User dbUser : successResponse.getData()) {
                             if(dbUser.getUserEmail().equals(currentAuthEmail)) {
                                 currentUser = dbUser;
-                                SharedPreferences.Editor preferenceEditor = preferences.edit();
-                                preferenceEditor.putString(USER_ID_TAG, currentUser.getId());
-                                System.out.println(USER_ID_TAG);
+
+                                System.out.println(currentUser);
                             }
                         }
-                        userFuture.complete(currentUser);
 
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
-                            }
-                        });
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+                        }
+                    });
                     },
-                    failureResponse -> {
-                        userFuture.complete(null);
-                        Log.i(Tag, "Did not read Users successfully");
-                    }
+                    failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
         }
+
+
     }
 
     public void showPopup(View v){
@@ -140,4 +141,5 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
     }
+
 }
