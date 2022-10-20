@@ -99,8 +99,8 @@ public class AddDog extends AppCompatActivity {
                     failureResponse -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failureResponse)
             );
 
-            Intent goToMainActivity = new Intent(AddDog.this, MainActivity.class);
-            startActivity(goToMainActivity);
+            Intent goToOwnProfileSettings = new Intent(AddDog.this, OwnProfileSettings.class);
+            startActivity(goToOwnProfileSettings);
         });
     }
 
