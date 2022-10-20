@@ -36,7 +36,6 @@ public final class User implements Model {
   private final @ModelField(targetType="String") String profileImageURL;
   private final @ModelField(targetType="Dog") @HasMany(associatedWith = "owner", type = Dog.class) List<Dog> dogs = null;
   private final @ModelField(targetType="Event") @HasMany(associatedWith = "host", type = Event.class) List<Event> eventsHosted = null;
-  private final @ModelField(targetType="User") @HasMany(associatedWith = "friends", type = User.class) List<User> friends = null;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
   public String getId() {
@@ -61,10 +60,6 @@ public final class User implements Model {
   
   public List<Event> getEventsHosted() {
       return eventsHosted;
-  }
-  
-  public List<User> getFriends() {
-      return friends;
   }
   
   public Temporal.DateTime getCreatedAt() {

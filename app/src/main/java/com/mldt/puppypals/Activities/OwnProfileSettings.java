@@ -5,13 +5,17 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.TextView;
 
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Dog;
 import com.amplifyframework.datastore.generated.model.Event;
@@ -25,27 +29,60 @@ import java.util.List;
 
 public class OwnProfileSettings extends AppCompatActivity {
     public static final String TAG = "OwnProfileSettingsActivity";
+    SharedPreferences preferences;
 
     List<Event> eventList = null;
     List<Dog> dogList = null;
     UpcomingEventsRecyclerViewAdapter eventAdapter;
     MyPetsRecyclerViewAdapter petAdapter;
+
+    String userName;
+    TextView userNameTV;
     User currentUser;
+    String userID = "";
     //currentUser currently not assigned - should be set to the current session user's email address
     //Set in shared preferences
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_own_profile_settings);
 
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+//        userID = preferences.getString(MainActivity.USER_ID_TAG,"");
+        userID = "0cfc51b2-41fe-4322-a79c-3054c780d096";
+
+        Amplify.API.query(
+                ModelQuery.get(User.class,userID),
+                success -> {
+                    Log.i(TAG, "Read User successfully!");
+                    currentUser = success.getData();
+                    runOnUiThread(() -> {
+
+                    });
+                },
+                failure -> Log.i(TAG, "Did not read User successfully " + failure)
+        );
+
         eventList = new ArrayList<>();
+        dogList = new ArrayList<>();
 
         setUpEditProfileButton();
         getEventsFromDB();
         setUpEventsRecyclerView();
         getDogsFromDB();
         setUpPetsRecyclerView();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        userName = preferences.getString(EditProfile.USER_NAME_TAG, "userName");
+        userNameTV = findViewById(R.id.ownProfileActivityUsernameTV);
+        userNameTV.setText(userName);
     }
 
     private void getEventsFromDB(){
