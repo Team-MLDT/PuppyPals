@@ -84,6 +84,7 @@ public class AddDog extends AppCompatActivity {
         }
 
         setUpSubmitButton();
+        setUpHomeButton();
         Button selectPhoto = findViewById(R.id.addDogActivityProfilePicBtn);
         selectPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,6 +133,14 @@ public class AddDog extends AppCompatActivity {
 
             Intent goToOwnProfileSettings = new Intent(AddDog.this, OwnProfileSettings.class);
             startActivity(goToOwnProfileSettings);
+        });
+    }
+
+    public void setUpHomeButton(){
+        Button homeButton = findViewById(R.id.addDogActivityHomeButton);
+        homeButton.setOnClickListener(view -> {
+            Intent goToMainActivity = new Intent(AddDog.this, MainActivity.class);
+            startActivity(goToMainActivity);
         });
     }
 
