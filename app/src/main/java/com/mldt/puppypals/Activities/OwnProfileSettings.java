@@ -5,13 +5,16 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
 
 
 import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Dog;
 import com.amplifyframework.datastore.generated.model.Event;
@@ -30,17 +33,21 @@ public class OwnProfileSettings extends AppCompatActivity {
     List<Dog> dogList = null;
     UpcomingEventsRecyclerViewAdapter eventAdapter;
     MyPetsRecyclerViewAdapter petAdapter;
-    User currentUser;
-    //currentUser currently not assigned - should be set to the current session user's email address
-    //Set in shared preferences
+    public AuthUser currentAuthUser = null;
+    public User currentUser = null;
+
+    SharedPreferences preferences;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_own_profile_settings);
-
+        currentAuthUser = Amplify.Auth.getCurrentUser();
         eventList = new ArrayList<>();
         dogList = new ArrayList<>();
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         setUpEditProfileButton();
         getEventsFromDB();

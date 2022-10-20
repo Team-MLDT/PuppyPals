@@ -5,7 +5,9 @@ import static android.content.ContentValues.TAG;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 import android.view.MenuInflater;
@@ -22,20 +24,28 @@ import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.User;
 import com.mldt.puppypals.R;
 
+import java.util.concurrent.CompletableFuture;
 
 
 public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
     public static final String Tag = "MainActivity";
+    public static final String USER_ID_TAG = "";
 
     public AuthUser currentAuthUser = null;
     public String currentAuthEmail = "";
     public User currentUser = null;
+    CompletableFuture<User> userFuture = null;
+
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
+        currentAuthUser = Amplify.Auth.getCurrentUser();
+        userFuture = new CompletableFuture<>();
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         if(Amplify.Auth.getCurrentUser() != null) {
             Amplify.Auth.fetchAuthSession(
@@ -52,18 +62,25 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         for (User dbUser : successResponse.getData()) {
                             if(dbUser.getUserEmail().equals(currentAuthEmail)) {
                                 currentUser = dbUser;
+                                SharedPreferences.Editor preferenceEditor = preferences.edit();
+                                preferenceEditor.putString(USER_ID_TAG, currentUser.getId());
                                 System.out.println(currentUser);
+                                System.out.println(USER_ID_TAG);
                             }
                         }
+                        userFuture.complete(currentUser);
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     },
-                    failureResponse -> Log.i(Tag, "Did not read Users successfully")
+                    failureResponse -> {
+                        userFuture.complete(null);
+                        Log.i(Tag, "Did not read Users successfully");
+                    }
             );
         }
     }
