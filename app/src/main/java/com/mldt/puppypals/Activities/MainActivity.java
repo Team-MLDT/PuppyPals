@@ -27,7 +27,7 @@ import com.mldt.puppypals.R;
 import java.util.concurrent.CompletableFuture;
 
 
-public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
+public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener {
     public static final String Tag = "MainActivity";
     public static final String USER_ID_TAG = "";
 
@@ -44,14 +44,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         setContentView(R.layout.activity_main);
 
 
-
         currentAuthUser = Amplify.Auth.getCurrentUser();
         userFuture = new CompletableFuture<>();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
 
-        if(Amplify.Auth.getCurrentUser() != null) {
+        if (Amplify.Auth.getCurrentUser() != null) {
             Amplify.Auth.fetchAuthSession(
                     result -> Log.i("AmplifyQuickstart", result.toString()),
                     error -> Log.e("AmplifyQuickstart", error.toString())
@@ -64,19 +63,19 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     successResponse -> {
                         System.out.println(successResponse.getData());
                         for (User dbUser : successResponse.getData()) {
-                            if(dbUser.getUserEmail().equals(currentAuthEmail)) {
+                            if (dbUser.getUserEmail().equals(currentAuthEmail)) {
                                 currentUser = dbUser;
 
                                 System.out.println(currentUser);
                             }
                         }
 
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+                            }
+                        });
                     },
                     failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
@@ -85,10 +84,10 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
     }
 
-    public void showPopup(View v){
+    public void showPopup(View v) {
         PopupMenu popup = new PopupMenu(this, v);
         MenuInflater inflater = popup.getMenuInflater();
-        if(currentAuthUser == null) {
+        if (currentAuthUser == null) {
             inflater.inflate(R.menu.dropdown_logged_out, popup.getMenu());
         } else {
             inflater.inflate(R.menu.dropdown_logged_in, popup.getMenu());
@@ -125,21 +124,23 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         return false;
     }
 
-    public void goToSignUpActivity(){
+    public void goToSignUpActivity() {
         Intent goToSignUp = new Intent(MainActivity.this, SignUp.class);
         startActivity(goToSignUp);
     }
-    public void goToLoginActivity(){
+
+    public void goToLoginActivity() {
         Intent goToLogIn = new Intent(MainActivity.this, LogIn.class);
         startActivity(goToLogIn);
     }
-    public void goToAboutActivity(){
+
+    public void goToAboutActivity() {
         Intent goToAbout = new Intent(MainActivity.this, AboutPage.class);
         startActivity(goToAbout);
     }
-    public void goToProfileActivity(){
+
+    public void goToProfileActivity() {
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
     }
-
 }
