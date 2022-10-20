@@ -42,14 +42,10 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-
-
         currentAuthUser = Amplify.Auth.getCurrentUser();
         userFuture = new CompletableFuture<>();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
 
         if(Amplify.Auth.getCurrentUser() != null) {
             Amplify.Auth.fetchAuthSession(
@@ -75,14 +71,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         @Override
                         public void run() {
                             Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+                            }
+                        });
                     },
                     failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
         }
-
-
     }
 
     public void showPopup(View v){
