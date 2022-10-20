@@ -42,10 +42,19 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+<<<<<<< Updated upstream
+=======
+
+
+>>>>>>> Stashed changes
         currentAuthUser = Amplify.Auth.getCurrentUser();
         userFuture = new CompletableFuture<>();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+<<<<<<< Updated upstream
+=======
+        SharedPreferences.Editor preferenceEditor = preferences.edit();
+>>>>>>> Stashed changes
 
         if(Amplify.Auth.getCurrentUser() != null) {
             Amplify.Auth.fetchAuthSession(
@@ -62,8 +71,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                         for (User dbUser : successResponse.getData()) {
                             if(dbUser.getUserEmail().equals(currentAuthEmail)) {
                                 currentUser = dbUser;
-
-                                System.out.println(currentUser);
+                                preferenceEditor.putString(USER_ID_TAG, currentUser.getId());
+                                preferenceEditor.apply();
                             }
                         }
 
