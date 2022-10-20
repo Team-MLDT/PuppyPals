@@ -28,26 +28,43 @@ import java.util.List;
 
 public class OwnProfileSettings extends AppCompatActivity {
     public static final String TAG = "OwnProfileSettingsActivity";
+    SharedPreferences preferences;
 
     List<Event> eventList = null;
     List<Dog> dogList = null;
     UpcomingEventsRecyclerViewAdapter eventAdapter;
     MyPetsRecyclerViewAdapter petAdapter;
-    public AuthUser currentAuthUser = null;
-    public User currentUser = null;
 
-    SharedPreferences preferences;
+    User currentUser;
+    String userID = "";
+    //currentUser currently not assigned - should be set to the current session user's email address
+    //Set in shared preferences
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_own_profile_settings);
-        currentAuthUser = Amplify.Auth.getCurrentUser();
-        eventList = new ArrayList<>();
-        dogList = new ArrayList<>();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+//        userID = preferences.getString(MainActivity.USER_ID_TAG,"");
+        userID = "1f2d1472-b86f-4a47-b852-8e93bcf42f9c";
+
+        Amplify.API.query(
+                ModelQuery.get(User.class,userID),
+                success -> {
+                    Log.i(TAG, "Read User successfully!");
+                    currentUser = success.getData();
+                    runOnUiThread(() -> {
+
+                    });
+                },
+                failure -> Log.i(TAG, "Did not read User successfully " + failure)
+        );
+
+        eventList = new ArrayList<>();
+        dogList = new ArrayList<>();
 
         setUpEditProfileButton();
         getEventsFromDB();
