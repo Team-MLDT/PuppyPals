@@ -43,12 +43,14 @@ public class UpcomingEventsRecyclerViewAdapter extends RecyclerView.Adapter<Upco
         upcomingEventsTitleTV.setText(eventDesc);
 
         TextView upcomingEventsDateTV = holder.itemView.findViewById(R.id.upcomingEventsFragmentDate);
-        String eventDate = eventList.get(position).getEventDate();
-        upcomingEventsDateTV.setText(eventDate.toString());
+        String eventDateTime = eventList.get(position).getEventDate() + ", " + eventList.get(position).getEventTime();
+        upcomingEventsDateTV.setText(eventDateTime);
 
         View eventsViewHolder = holder.itemView;
         eventsViewHolder.setOnClickListener(view -> {
             Intent goToEventDetailPage = new Intent(callingActivity, EventDetails.class);
+            goToEventDetailPage.putExtra(EventDetails.EVENT_DESCRIPTION_TAG,eventDesc);
+            goToEventDetailPage.putExtra(EventDetails.EVENT_DATE_TIME_TAG,eventDateTime);
             callingActivity.startActivity(goToEventDetailPage);
         });
     }
