@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         setContentView(R.layout.activity_main);
 
+<<<<<<< Updated upstream
         Amplify.Auth.fetchAuthSession(
                 result -> Log.i("AmplifyQuickstart", result.toString()),
                 error -> Log.e("AmplifyQuickstart", error.toString())
@@ -75,6 +76,39 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                 successResponse -> Log.i(Tag, "Event added!"),
                 failureResponse -> Log.i(Tag, "AddTaskActivity: failed with this response: " + failureResponse)
         );
+=======
+        if(Amplify.Auth.getCurrentUser() != null) {
+            Amplify.Auth.fetchAuthSession(
+                    result -> Log.i("AmplifyQuickstart", result.toString()),
+                    error -> Log.e("AmplifyQuickstart", error.toString())
+            );
+            currentAuthUser = Amplify.Auth.getCurrentUser();
+            currentAuthEmail = currentAuthUser.getUsername();
+
+            Amplify.API.query(
+                    ModelQuery.list(User.class),
+                    successResponse -> {
+                        System.out.println(successResponse.getData());
+                        for (User dbUser : successResponse.getData()) {
+                            if(dbUser.getUserEmail().equals(currentAuthEmail)) {
+                                currentUser = dbUser;
+                                System.out.println(currentUser);
+                            }
+                        }
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    },
+                    failureResponse -> Log.i(Tag, "Did not read Users successfully")
+            );
+        }
+
+
+>>>>>>> Stashed changes
     }
 
     public void showPopup(View v){
@@ -134,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         startActivity(goToProfile);
     }
 
+<<<<<<< Updated upstream
 //  for testing add dog functionality
 //    public void setUpAddDogButton() {
 //        Button addDogButton = findViewById(R.id.testAddDogButton);
@@ -142,4 +177,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 //            startActivity(goToAddDog);
 //        });
 //    }
+=======
+
+>>>>>>> Stashed changes
 }
