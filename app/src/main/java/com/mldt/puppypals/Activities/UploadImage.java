@@ -35,6 +35,8 @@ public class UploadImage extends AppCompatActivity {
         setContentView(R.layout.activity_upload_image);
         setUpSaveButton();
         setupAddImageButton();
+
+        activityResultLauncher = getImagePickingActivityResultsLauncher();
     }
     private void setUpSaveButton(){
         findViewById(R.id.saveImageButton).setOnClickListener(view ->{

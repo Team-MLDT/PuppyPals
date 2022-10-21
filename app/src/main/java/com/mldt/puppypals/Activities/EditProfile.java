@@ -26,6 +26,14 @@ public class EditProfile extends AppCompatActivity {
 
         setUpAddDogButton();
         setUpUpdateButton();
+        setupAddImageButton();
+    }
+
+    private void setupAddImageButton(){
+        findViewById(R.id.editProfileActivityChangeImageButton).setOnClickListener(view -> {
+            Intent goToUploadImageActivity = new Intent(EditProfile.this, UploadImage.class );
+            startActivity(goToUploadImageActivity);
+        });
     }
 
     public void setUpAddDogButton() {
