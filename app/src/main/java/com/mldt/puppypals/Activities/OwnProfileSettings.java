@@ -47,9 +47,31 @@ public class OwnProfileSettings extends AppCompatActivity {
         setContentView(R.layout.activity_own_profile_settings);
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
-
         userID = preferences.getString(MainActivity.USER_ID_TAG,"");
 
+        eventList = new ArrayList<>();
+        dogList = new ArrayList<>();
+
+        getUser();
+        getEventsFromDB();
+        setUpEventsRecyclerView();
+        getDogsFromDB();
+        setUpPetsRecyclerView();
+
+        setUpHomeButton();
+        setUpEditProfileButton();
+    }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+
+        userName = preferences.getString(EditProfile.USER_NAME_TAG, "userName");
+        userNameTV = findViewById(R.id.ownProfileActivityUsernameTV);
+        userNameTV.setText(userName);
+    }
+
+    private void getUser(){
         Amplify.API.query(
                 ModelQuery.get(User.class,userID),
                 success -> {
@@ -61,25 +83,6 @@ public class OwnProfileSettings extends AppCompatActivity {
                 },
                 failure -> Log.i(TAG, "Did not read User successfully " + failure)
         );
-
-        eventList = new ArrayList<>();
-        dogList = new ArrayList<>();
-
-        setUpHomeButton();
-        setUpEditProfileButton();
-        getEventsFromDB();
-        setUpEventsRecyclerView();
-        getDogsFromDB();
-        setUpPetsRecyclerView();
-    }
-
-    @Override
-    protected void onResume(){
-        super.onResume();
-
-        userName = preferences.getString(EditProfile.USER_NAME_TAG, "userName");
-        userNameTV = findViewById(R.id.ownProfileActivityUsernameTV);
-        userNameTV.setText(userName);
     }
 
     private void getEventsFromDB(){

@@ -104,13 +104,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                                 preferenceEditor.apply();
                             }
                         }
-
-                        runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
-                            }
-                        });
                     },
                     failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
