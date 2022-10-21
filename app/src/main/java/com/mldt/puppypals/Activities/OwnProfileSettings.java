@@ -49,7 +49,6 @@ public class OwnProfileSettings extends AppCompatActivity {
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         userID = preferences.getString(MainActivity.USER_ID_TAG,"");
-//        userID = "1f2d1472-b86f-4a47-b852-8e93bcf42f9c";
 
         Amplify.API.query(
                 ModelQuery.get(User.class,userID),

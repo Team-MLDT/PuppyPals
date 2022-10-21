@@ -14,6 +14,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 
+import android.widget.Button;
 import android.widget.PopupMenu;
 import android.widget.Toast;
 
@@ -179,7 +180,6 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
     }
-
 
     private void setAddEventButton() {
         findViewById(R.id.mainActivityTestAddEventButton).setOnClickListener(view -> {

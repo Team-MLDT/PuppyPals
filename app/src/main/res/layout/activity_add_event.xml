@@ -36,80 +36,88 @@
             android:layout_width="97dp"
             android:layout_height="23dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="31dp"
             android:text="Event Date"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="105dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventTitleTV" />
 
         <TextView
             android:id="@+id/eventDetailActivityEventTimeTV"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="31dp"
             android:text="Event Time"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="154dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventDateTV" />
 
         <TextView
             android:id="@+id/eventDetailActivityEventLocationTV"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
             android:text="Event Location"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="217dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventTimeTV" />
 
         <TextView
             android:id="@+id/eventDetailActivityEventLatitudeTV"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="34dp"
             android:text="Latitude"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="277dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventLocationTV" />
 
         <TextView
             android:id="@+id/eventDetailActivityEventLongitudeTV"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="36dp"
             android:text="Longitude"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="339dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventLatitudeTV" />
 
         <TextView
             android:id="@+id/eventDetailActivityEventLongitudeTV2"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="46dp"
             android:text="City"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="407dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventLongitudeTV" />
 
         <TextView
             android:id="@+id/eventDetailActivityEventCityTV"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
             android:text="State"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="461dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventLongitudeTV2" />
 
         <TextView
             android:id="@+id/eventDetailActivityEventZipTV"
             android:layout_width="0dp"
             android:layout_height="24dp"
             android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
             android:text="Zip"
             android:textSize="16sp"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="525dp" />
+            app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventCityTV" />
 
         <EditText
             android:id="@+id/addEventActivityTitleInput"
@@ -126,73 +134,88 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="44dp"
+            android:layout_marginTop="7dp"
             android:ems="10"
             android:inputType="date"
             app:layout_constraintStart_toEndOf="@+id/eventDetailActivityEventDateTV"
-            tools:layout_editor_absoluteY="94dp" />
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityTitleInput" />
 
         <EditText
             android:id="@+id/addEventActivityTimeInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="63dp"
+            android:layout_marginTop="7dp"
             android:ems="10"
             android:inputType="date"
             app:layout_constraintStart_toEndOf="@+id/eventDetailActivityEventTimeTV"
-            tools:layout_editor_absoluteY="146dp" />
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityDateInput" />
 
         <EditText
             android:id="@+id/addEventActivityLatitudeInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="76dp"
+            android:layout_marginTop="74dp"
             android:ems="10"
             android:inputType="textPostalAddress"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="264dp" />
+            app:layout_constraintStart_toEndOf="@+id/eventDetailActivityEventLatitudeTV"
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityTimeInput" />
 
         <EditText
             android:id="@+id/addEventActivityLongitudeInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="63dp"
+            android:layout_marginTop="17dp"
             android:ems="10"
             android:inputType="textPostalAddress"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="326dp" />
+            app:layout_constraintStart_toEndOf="@+id/eventDetailActivityEventLongitudeTV"
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityLatitudeInput" />
 
         <EditText
             android:id="@+id/addEventActivityCityInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="107dp"
+            android:layout_marginTop="23dp"
             android:ems="10"
             android:inputType="textPostalAddress"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="394dp" />
+            app:layout_constraintStart_toEndOf="@+id/eventDetailActivityEventLongitudeTV2"
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityLongitudeInput" />
 
         <EditText
             android:id="@+id/addEventActivityStateInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="97dp"
+            android:layout_marginTop="14dp"
             android:ems="10"
             android:inputType="textPostalAddress"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="453dp" />
+            app:layout_constraintStart_toEndOf="@+id/eventDetailActivityEventCityTV"
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityCityInput" />
 
         <EditText
             android:id="@+id/addEventActivityZipInput"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="112dp"
+            android:layout_marginTop="18dp"
             android:ems="10"
             android:inputType="textPostalAddress"
-            tools:layout_editor_absoluteX="150dp"
-            tools:layout_editor_absoluteY="516dp" />
+            app:layout_constraintStart_toEndOf="@+id/eventDetailActivityEventZipTV"
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityStateInput" />
 
         <Button
             android:id="@+id/addEventActivitySaveButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
             android:text="Save"
-            tools:layout_editor_absoluteX="163dp"
-            tools:layout_editor_absoluteY="604dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addEventActivityZipInput" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
