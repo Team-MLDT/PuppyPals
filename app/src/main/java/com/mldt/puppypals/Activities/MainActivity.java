@@ -3,6 +3,8 @@ package com.mldt.puppypals.Activities;
 import static android.content.ContentValues.TAG;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -59,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
 
         getUser();
         getEventsFromDB();
+        setUpEventsRecyclerView();
 
         try {
             LocationRequest.getQuery();
@@ -203,5 +206,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     });
                 },
                 failure -> Log.i(TAG, "Did not read Events successfully " + failure)
+    }
+    private void setUpEventsRecyclerView(){
+        RecyclerView eventsRecyclerView = findViewById(R.id.mainActivityEventsRecyclerView);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this);
+        eventsRecyclerView.setLayoutManager(layoutManager);
+        allEventsAdapter = new UpcomingEventsRecyclerViewAdapter(eventList, this);
+        eventsRecyclerView.setAdapter(allEventsAdapter);
     }
 }
