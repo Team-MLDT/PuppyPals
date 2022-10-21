@@ -7,7 +7,7 @@
     tools:context=".Activities.OwnProfileSettings">
 
     <Button
-        android:id="@+id/addDogActivityHomeButton2"
+        android:id="@+id/ownProfileActivityHomeButton"
         android:layout_width="68dp"
         android:layout_height="42dp"
         android:layout_marginTop="16dp"
@@ -61,7 +61,7 @@
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/ownProfileActivityPetsRV"
-        app:layout_constraintEnd_toStartOf="@+id/addDogActivityHomeButton2"
+        app:layout_constraintEnd_toStartOf="@+id/ownProfileActivityHomeButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />

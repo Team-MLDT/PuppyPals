@@ -11,6 +11,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.util.Log;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -44,40 +45,34 @@ public class SignUp extends AppCompatActivity {
 
         setUpSignUpForm();
 
+
         // Setup location Client & request permissions
         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1); // hardcoded 1; can be anything between 1 - 65535
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
         fusedLocationClient.flushLocations();
 
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
-            // TODO: Consider calling
-            //    ActivityCompat#requestPermissions
-            // here to request the missing permissions, and then overriding
-            //   public void onRequestPermissionsResult(int requestCode, String[] permissions,
-            //                                          int[] grantResults)
-            // to handle the case where the user grants the permission. See the documentation
-            // for ActivityCompat#requestPermissions for more details.
-            return;
-        }
-        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, new CancellationToken() {
-            @NonNull
-            @Override
-            public CancellationToken onCanceledRequested(@NonNull OnTokenCanceledListener onTokenCanceledListener) {
-                return null;
-            }
-
-            @Override
-            public boolean isCancellationRequested() {
-                return false;
-            }
-        }).addOnSuccessListener(location -> {
-            if(location == null){
-                Log.e(LOCATION_TAG, "Location callback was null");
-
-            }
-            Log.i(LOCATION_TAG, "Latitude: " + location.getLatitude());
-            Log.i(LOCATION_TAG, "Longitude: " + location.getLongitude());
-        });
+//        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED){
+//            return;
+//        }
+//        fusedLocationClient.getCurrentLocation(Priority.PRIORITY_HIGH_ACCURACY, new CancellationToken() {
+//            @NonNull
+//            @Override
+//            public CancellationToken onCanceledRequested(@NonNull OnTokenCanceledListener onTokenCanceledListener) {
+//                return null;
+//            }
+//
+//            @Override
+//            public boolean isCancellationRequested() {
+//                return false;
+//            }
+//        }).addOnSuccessListener(location -> {
+//            if(location == null){
+//                Log.e(LOCATION_TAG, "Location callback was null");
+//
+//            }
+//            Log.i(LOCATION_TAG, "Latitude: " + location.getLatitude());
+//            Log.i(LOCATION_TAG, "Longitude: " + location.getLongitude());
+//        });
 
     }
 
