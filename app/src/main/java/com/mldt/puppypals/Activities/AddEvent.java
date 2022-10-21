@@ -7,6 +7,7 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.location.Geocoder;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -23,6 +24,7 @@ import com.google.android.gms.tasks.OnTokenCanceledListener;
 import com.mldt.puppypals.R;
 
 public class AddEvent extends AppCompatActivity {
+
     public static final String Tag = "Location";
     // Create the location client
     FusedLocationProviderClient fusedLocationClient;
@@ -35,13 +37,32 @@ public class AddEvent extends AppCompatActivity {
     String eventState = "";
     String eventZip = "";
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
+        setUpSubmitButton();
+        setUpLocation();
+
+            Event newEvent = Event.builder()
+                    .eventDescription("Description")
+                    .lat("Latitude")
+                    .lon("Longitude")
+                    .eventDate("Date")
+                    .eventTime("Time")
+                    .eventImageUrl("ImageUrl")
+                    .build();
+
+            Amplify.API.mutate(
+                    ModelMutation.create(newEvent),
+                    success -> Log.i(TAG,"Add Event made Successfully"),
+                    failure -> Log.i(TAG, "failed to add event")
+            );
+            
+    }
+
+    private void setUpLocation(){
         // Setup location Client & request permissions
         requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1); // hardcoded 1; can be anything between 1 - 65535
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(getApplicationContext());
@@ -76,8 +97,6 @@ public class AddEvent extends AppCompatActivity {
             Log.i(Tag, "Latitude: " + location.getLatitude());
             Log.i(Tag, "Longitude: " + location.getLongitude());
         });
-
-        setUpSubmitButton();
     }
 
 
@@ -112,6 +131,7 @@ public class AddEvent extends AppCompatActivity {
                 failure -> Log.i(Tag, "failed to add event")
         );
         Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
+
 
     }
 
