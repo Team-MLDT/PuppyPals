@@ -37,7 +37,6 @@ public class EventDetails extends AppCompatActivity implements OnMapReadyCallbac
         eventLat = parseDouble(intent.getStringExtra("eventLatitude"));
         eventLon = parseDouble(intent.getStringExtra("eventLongitude"));
 
-//        Fragment testGetFrag = getFragmentManager().findFragmentById(R.id.fmap);
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);

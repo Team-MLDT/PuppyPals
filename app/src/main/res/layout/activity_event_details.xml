@@ -57,7 +57,7 @@
             app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventTitleTV" />
 
         <TextView
-            android:id="@+id/eventDetailActivityEventLocationTV"
+            android:id="@+id/eventDetailActivityEventTimeTV"
             android:layout_width="wrap_content"
             android:layout_height="24dp"
             android:layout_marginStart="32dp"

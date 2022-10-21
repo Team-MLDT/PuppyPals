@@ -84,7 +84,6 @@ public class AddDog extends AppCompatActivity {
         }
 
         setUpSubmitButton();
-        setUpHomeButton();
         Button selectPhoto = findViewById(R.id.addDogActivityProfilePicBtn);
         selectPhoto.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,14 +103,10 @@ public class AddDog extends AppCompatActivity {
             imageView.setImageURI(selectedImage);
         }
     }
-    //TODO: make this work
-//    private void setUpSaveButton(){
-//
-//    }
 
     private void setUpSubmitButton(){
-        Button saveNewTaskButton = findViewById(R.id.addDogActivitySaveBtn);
-        saveNewTaskButton.setOnClickListener(view -> {
+        Button saveNewDogButton = findViewById(R.id.addDogActivitySaveBtn);
+        saveNewDogButton.setOnClickListener(view -> {
 
             String dogName = ((EditText) findViewById(R.id.addDogActivityDogNameET)).getText().toString();
             String dogBreed = ((EditText) findViewById(R.id.addDogActivityDogBreedET)).getText().toString();
@@ -133,14 +128,6 @@ public class AddDog extends AppCompatActivity {
 
             Intent goToOwnProfileSettings = new Intent(AddDog.this, OwnProfileSettings.class);
             startActivity(goToOwnProfileSettings);
-        });
-    }
-
-    public void setUpHomeButton(){
-        Button homeButton = findViewById(R.id.addDogActivityHomeButton);
-        homeButton.setOnClickListener(view -> {
-            Intent goToMainActivity = new Intent(AddDog.this, MainActivity.class);
-            startActivity(goToMainActivity);
         });
     }
 

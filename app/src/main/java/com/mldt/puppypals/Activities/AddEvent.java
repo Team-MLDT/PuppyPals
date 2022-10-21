@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
 import com.amplifyframework.core.Amplify;
@@ -24,6 +26,17 @@ public class AddEvent extends AppCompatActivity {
     public static final String Tag = "Location";
     // Create the location client
     FusedLocationProviderClient fusedLocationClient;
+    String eventTitle = "";
+    String eventDate = "";
+    String eventTime = "";
+    String eventLat = "";
+    String eventLon = "";
+    String eventCity = "";
+    String eventState = "";
+    String eventZip = "";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,23 +75,44 @@ public class AddEvent extends AppCompatActivity {
             }
             Log.i(Tag, "Latitude: " + location.getLatitude());
             Log.i(Tag, "Longitude: " + location.getLongitude());
+        });
 
-            Event newEvent = Event.builder()
-                    .eventDescription("Description")
-                    .lat("Latitude")
-                    .lon("Longitude")
-                    .eventDate("Date")
-                    .eventTime("Time")
-                    .eventImageUrl("ImageUrl")
-                    .build();
+        setUpSubmitButton();
+    }
 
-            Amplify.API.mutate(
-                    ModelMutation.create(newEvent),
-                    success -> Log.i(Tag,"Add Event made Successfully"),
-                    failure -> Log.i(Tag, "failed to add event")
-            );
-                Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
+
+    public void setUpSubmitButton() {
+
+        Button addNewEventButton = findViewById(R.id.addEventActivitySaveButton);
+        addNewEventButton.setOnClickListener(view -> {
+            eventTitle = ((EditText) findViewById(R.id.addEventActivityTitleInput)).getText().toString();
+            eventDate = ((EditText) findViewById(R.id.addEventActivityDateInput)).getText().toString();
+            eventTime = ((EditText) findViewById(R.id.addEventActivityTimeInput)).getText().toString();
+            eventLat = ((EditText) findViewById(R.id.addEventActivityLatitudeInput)).getText().toString();
+            eventLon = ((EditText) findViewById(R.id.addEventActivityLongitudeInput)).getText().toString();
+            eventCity = ((EditText) findViewById(R.id.addEventActivityCityInput)).getText().toString();
+            eventState = ((EditText) findViewById(R.id.addEventActivityStateInput)).getText().toString();
+            eventZip = ((EditText) findViewById(R.id.addEventActivityZipInput)).getText().toString();
+
+            // class as API representation of location (only properties are lat & lon)
 
         });
+
+        Event newEvent = Event.builder()
+                .eventDescription(eventTitle)
+                .lat(eventLat)
+                .lon(eventLon)
+                .eventDate(eventDate)
+                .eventTime(eventTime)
+                .build();
+
+        Amplify.API.mutate(
+                ModelMutation.create(newEvent),
+                success -> Log.i(Tag,"Add Event made Successfully"),
+                failure -> Log.i(Tag, "failed to add event")
+        );
+        Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
+
     }
+
 }
