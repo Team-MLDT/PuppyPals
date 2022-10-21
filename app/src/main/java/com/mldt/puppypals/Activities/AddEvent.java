@@ -43,9 +43,9 @@ public class AddEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
-        setUpSubmitButton();
 //        setUpLocation();
-            
+
+        setUpSubmitButton();
     }
 
 //    private void setUpLocation(){
@@ -101,7 +101,6 @@ public class AddEvent extends AppCompatActivity {
 
             // class as API representation of location (only properties are lat & lon)
 
-        });
 
         Event newEvent = Event.builder()
                 .eventDescription(eventTitle)
@@ -116,9 +115,10 @@ public class AddEvent extends AppCompatActivity {
                 success -> Log.i(Tag,"Add Event made Successfully"),
                 failure -> Log.i(Tag, "failed to add event")
         );
-
         Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
         startActivity(goToMainActivity);
+        });
+
 
     }
 
