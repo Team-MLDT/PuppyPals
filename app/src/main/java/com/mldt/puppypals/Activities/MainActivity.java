@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         getUser();
-        getEventsFromDB();
+//        getEventsFromDB();
 
         try {
             LocationRequest.getQuery();
@@ -170,22 +170,22 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         });
     }
 
-    private void getEventsFromDB(){
-        Amplify.API.query(
-                ModelQuery.list(Event.class),
-                success -> {
-                    Log.i(TAG, "Read Events successfully!");
-                    eventList.clear();
-                    for(Event dbEvent : success.getData()){
-                        if(dbEvent.getHost().equals(currentUser)){
-                            eventList.add(dbEvent);
-                        }
-                    }
-                    runOnUiThread(() -> {
-                        allEventsAdapter.notifyDataSetChanged();
-                    });
-                },
-                failure -> Log.i(TAG, "Did not read Events successfully " + failure)
-        );
-    }
+//    private void getEventsFromDB(){
+//        Amplify.API.query(
+//                ModelQuery.list(Event.class),
+//                success -> {
+//                    Log.i(TAG, "Read Events successfully!");
+//                    eventList.clear();
+//                    for(Event dbEvent : success.getData()){
+//                        if(dbEvent.getHost().equals(currentUser)){
+//                            eventList.add(dbEvent);
+//                        }
+//                    }
+//                    runOnUiThread(() -> {
+//                        allEventsAdapter.notifyDataSetChanged();
+//                    });
+//                },
+//                failure -> Log.i(TAG, "Did not read Events successfully " + failure)
+//        );
+//    }
 }
