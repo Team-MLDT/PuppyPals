@@ -59,7 +59,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
         getUser();
-//        getEventsFromDB();
+        getEventsFromDB();
 
         try {
             LocationRequest.getQuery();
@@ -112,6 +112,25 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
         }
+
+        try {
+            LocationRequest.getQuery();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setAddEventButton();
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        if (currentAuthUser == null) {
+            inflater.inflate(R.menu.dropdown_logged_out, popup.getMenu());
+        } else {
+            inflater.inflate(R.menu.dropdown_logged_in, popup.getMenu());
+        }
+        popup.setOnMenuItemClickListener(this::onMenuItemClick);
+        popup.show();
     }
 
     @Override
@@ -162,30 +181,27 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         startActivity(goToProfile);
     }
 
-    private void setUpAddEventButton() {
-        Button addEventButton = findViewById(R.id.mainActivityTestAddEventButton);
-        addEventButton.setOnClickListener(view -> {
-            Intent goToAddEvent = new Intent(MainActivity.this,AddEvent.class);
-
+    private void setAddEventButton() {
+        findViewById(R.id.mainActivityTestAddEventButton).setOnClickListener(view -> {
+            Intent goToAddEventActivity = new Intent(MainActivity.this, AddEvent.class);
+            startActivity(goToAddEventActivity);
         });
-    }
 
-//    private void getEventsFromDB(){
-//        Amplify.API.query(
-//                ModelQuery.list(Event.class),
-//                success -> {
-//                    Log.i(TAG, "Read Events successfully!");
-//                    eventList.clear();
-//                    for(Event dbEvent : success.getData()){
-//                        if(dbEvent.getHost().equals(currentUser)){
-//                            eventList.add(dbEvent);
-//                        }
-//                    }
-//                    runOnUiThread(() -> {
-//                        allEventsAdapter.notifyDataSetChanged();
-//                    });
-//                },
-//                failure -> Log.i(TAG, "Did not read Events successfully " + failure)
-//        );
-//    }
+    private void getEventsFromDB(){
+        Amplify.API.query(
+                ModelQuery.list(Event.class),
+                success -> {
+                    Log.i(TAG, "Read Events successfully!");
+                    eventList.clear();
+                    for(Event dbEvent : success.getData()){
+                        if(dbEvent.getHost().equals(currentUser)){
+                            eventList.add(dbEvent);
+                        }
+                    }
+                    runOnUiThread(() -> {
+                        allEventsAdapter.notifyDataSetChanged();
+                    });
+                },
+                failure -> Log.i(TAG, "Did not read Events successfully " + failure)
+    }
 }
