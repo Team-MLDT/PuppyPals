@@ -6,16 +6,22 @@ import androidx.core.app.ActivityCompat;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Geocoder;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.amplifyframework.api.graphql.model.ModelMutation;
+import com.amplifyframework.api.graphql.model.ModelQuery;
+import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.generated.model.Event;
+import com.amplifyframework.datastore.generated.model.User;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.Priority;
@@ -23,12 +29,23 @@ import com.google.android.gms.tasks.CancellationToken;
 import com.google.android.gms.tasks.OnTokenCanceledListener;
 import com.mldt.puppypals.R;
 
+import java.util.concurrent.CompletableFuture;
+
 public class AddEvent extends AppCompatActivity {
 
     public static final String Tag = "Location";
     public static final String ActTag = "AddEvent";
+
+    public AuthUser currentAuthUser = null;
+    CompletableFuture<User> userFuture = null;
+    public User currentUser = null;
+    SharedPreferences preferences;
+
+
     // Create the location client
     FusedLocationProviderClient fusedLocationClient;
+
+
     String eventTitle = "";
     String eventDate = "";
     String eventTime = "";
@@ -42,11 +59,51 @@ public class AddEvent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
+        currentAuthUser = Amplify.Auth.getCurrentUser();
+        userFuture = new CompletableFuture<>();
+
+        preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        if (Amplify.Auth.getCurrentUser() != null) {
+            Amplify.Auth.fetchAuthSession(
+                    result -> Log.i("AmplifyQuickstart", result.toString()),
+                    error -> Log.e("AmplifyQuickstart", error.toString())
+            );
+            currentAuthUser = Amplify.Auth.getCurrentUser();
+            String currentAuthEmail = currentAuthUser.getUsername();
+
+            Amplify.API.query(
+                    ModelQuery.list(User.class),
+                    successResponse -> {
+                        System.out.println(successResponse.getData());
+                        for (User dbUser : successResponse.getData()) {
+                            if (dbUser.getUserEmail().equals(currentAuthEmail)) {
+                                currentUser = dbUser;
+                                System.out.println("Current user: " + currentUser);
+                            }
+                        }
+                        userFuture.complete(currentUser);
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(AddEvent.this, "Found user", Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    },
+                    failureResponse -> {
+                        userFuture.complete(null);
+                        Log.i(Tag, "Did not read Users successfully");
+                    }
+            );
 
 //        setUpLocation();
-
-        setUpSubmitButton();
+            setUpSubmitButton();
+        }
     }
+
+
+
 
 //    private void setUpLocation(){
 //        // Setup location Client & request permissions
@@ -108,6 +165,7 @@ public class AddEvent extends AppCompatActivity {
                 .lon(eventLon)
                 .eventDate(eventDate)
                 .eventTime(eventTime)
+                .host(currentUser)
                 .build();
 
         Amplify.API.mutate(
@@ -118,8 +176,5 @@ public class AddEvent extends AppCompatActivity {
         Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
         startActivity(goToMainActivity);
         });
-
-
     }
-
 }
