@@ -42,24 +42,11 @@ public class AddEvent extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_event);
 
-        setUpSubmitButton();
 //        setUpLocation();
 
-            Event newEvent = Event.builder()
-                    .eventDescription("Description")
-                    .lat("Latitude")
-                    .lon("Longitude")
-                    .eventDate("Date")
-                    .eventTime("Time")
-                    .eventImageUrl("ImageUrl")
-                    .build();
 
-            Amplify.API.mutate(
-                    ModelMutation.create(newEvent),
-                    success -> Log.i(TAG,"Add Event made Successfully"),
-                    failure -> Log.i(TAG, "failed to add event")
-            );
-            
+        setUpSubmitButton();
+
     }
 
 //    private void setUpLocation(){
@@ -98,7 +85,6 @@ public class AddEvent extends AppCompatActivity {
 
             // class as API representation of location (only properties are lat & lon)
 
-        });
 
         Event newEvent = Event.builder()
                 .eventDescription(eventTitle)
@@ -114,7 +100,9 @@ public class AddEvent extends AppCompatActivity {
                 failure -> Log.i(TAG, "failed to add event")
         );
         Intent goToMainActivity = new Intent(AddEvent.this, MainActivity.class);
+        startActivity(goToMainActivity);
 
+        });
 
     }
 

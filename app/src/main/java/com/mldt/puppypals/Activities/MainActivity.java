@@ -111,6 +111,25 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
         }
+
+        try {
+            LocationRequest.getQuery();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        setAddEventButton();
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        if (currentAuthUser == null) {
+            inflater.inflate(R.menu.dropdown_logged_out, popup.getMenu());
+        } else {
+            inflater.inflate(R.menu.dropdown_logged_in, popup.getMenu());
+        }
+        popup.setOnMenuItemClickListener(this::onMenuItemClick);
+        popup.show();
     }
 
     @Override
@@ -161,6 +180,13 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         startActivity(goToProfile);
     }
 
+
+    private void setAddEventButton() {
+        findViewById(R.id.mainActivityTestAddEventButton).setOnClickListener(view -> {
+            Intent goToAddEventActivity = new Intent(MainActivity.this, AddEvent.class);
+            startActivity(goToAddEventActivity);
+        });
+
     private void getEventsFromDB(){
         Amplify.API.query(
                 ModelQuery.list(Event.class),
@@ -177,6 +203,5 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     });
                 },
                 failure -> Log.i(TAG, "Did not read Events successfully " + failure)
-        );
     }
 }
