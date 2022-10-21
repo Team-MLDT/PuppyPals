@@ -31,15 +31,15 @@ public class OwnProfileSettings extends AppCompatActivity {
     public static final String TAG = "OwnProfileSettingsActivity";
     SharedPreferences preferences;
 
-    List<Event> eventList = null;
-    List<Dog> dogList = null;
-    UpcomingEventsRecyclerViewAdapter eventAdapter;
-    MyPetsRecyclerViewAdapter petAdapter;
+    private List<Event> eventList = null;
+    private List<Dog> dogList = null;
+    private UpcomingEventsRecyclerViewAdapter eventAdapter;
+    private MyPetsRecyclerViewAdapter petAdapter;
 
-    String userName;
-    TextView userNameTV;
-    User currentUser;
-    String userID = "";
+    public String userName;
+    private TextView userNameTV;
+    public User currentUser;
+    public String userID = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +66,7 @@ public class OwnProfileSettings extends AppCompatActivity {
         eventList = new ArrayList<>();
         dogList = new ArrayList<>();
 
+        setUpHomeButton();
         setUpEditProfileButton();
         getEventsFromDB();
         setUpEventsRecyclerView();
@@ -141,6 +142,13 @@ public class OwnProfileSettings extends AppCompatActivity {
         editButton.setOnClickListener(view -> {
             Intent goToEditProfile = new Intent(OwnProfileSettings.this, EditProfile.class);
             startActivity(goToEditProfile);
+        });
+    }
+    public void setUpHomeButton(){
+        Button homeButton = findViewById(R.id.ownProfileActivityHomeButton);
+        homeButton.setOnClickListener(view -> {
+            Intent goToMainActivity = new Intent(OwnProfileSettings.this, MainActivity.class);
+            startActivity(goToMainActivity);
         });
     }
 }

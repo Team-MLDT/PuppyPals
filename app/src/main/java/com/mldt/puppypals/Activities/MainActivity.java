@@ -21,11 +21,15 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 
+import com.amplifyframework.datastore.generated.model.Event;
 import com.amplifyframework.datastore.generated.model.User;
+import com.mldt.puppypals.Adapters.UpcomingEventsRecyclerViewAdapter;
 import com.mldt.puppypals.LocationRequest;
 import com.mldt.puppypals.R;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -37,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public String currentAuthEmail = "";
     public User currentUser = null;
     CompletableFuture<User> userFuture = null;
+    private List<Event> eventList = null;
+    private UpcomingEventsRecyclerViewAdapter allEventsAdapter;
 
     SharedPreferences preferences;
 
@@ -44,14 +50,37 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        eventList = new ArrayList<>();
 
         currentAuthUser = Amplify.Auth.getCurrentUser();
         userFuture = new CompletableFuture<>();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
+
+        getUser();
+        getEventsFromDB();
+
+        try {
+            LocationRequest.getQuery();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void showPopup(View v) {
+        PopupMenu popup = new PopupMenu(this, v);
+        MenuInflater inflater = popup.getMenuInflater();
+        if (currentAuthUser == null) {
+            inflater.inflate(R.menu.dropdown_logged_out, popup.getMenu());
+        } else {
+            inflater.inflate(R.menu.dropdown_logged_in, popup.getMenu());
+        }
+        popup.setOnMenuItemClickListener(this::onMenuItemClick);
+        popup.show();
+    }
+
+    public void getUser(){
         SharedPreferences.Editor preferenceEditor = preferences.edit();
-
-
         if (Amplify.Auth.getCurrentUser() != null) {
             Amplify.Auth.fetchAuthSession(
                     result -> Log.i("AmplifyQuickstart", result.toString()),
@@ -71,35 +100,17 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                                 preferenceEditor.apply();
                             }
                         }
-                        
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
                             }
                         });
                     },
                     failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
         }
-
-        try {
-            LocationRequest.getQuery();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void showPopup(View v) {
-        PopupMenu popup = new PopupMenu(this, v);
-        MenuInflater inflater = popup.getMenuInflater();
-        if (currentAuthUser == null) {
-            inflater.inflate(R.menu.dropdown_logged_out, popup.getMenu());
-        } else {
-            inflater.inflate(R.menu.dropdown_logged_in, popup.getMenu());
-        }
-        popup.setOnMenuItemClickListener(this::onMenuItemClick);
-        popup.show();
     }
 
     @Override
@@ -148,5 +159,24 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public void goToProfileActivity() {
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
+    }
+
+    private void getEventsFromDB(){
+        Amplify.API.query(
+                ModelQuery.list(Event.class),
+                success -> {
+                    Log.i(TAG, "Read Events successfully!");
+                    eventList.clear();
+                    for(Event dbEvent : success.getData()){
+                        if(dbEvent.getHost().equals(currentUser)){
+                            eventList.add(dbEvent);
+                        }
+                    }
+                    runOnUiThread(() -> {
+                        allEventsAdapter.notifyDataSetChanged();
+                    });
+                },
+                failure -> Log.i(TAG, "Did not read Events successfully " + failure)
+        );
     }
 }

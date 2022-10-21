@@ -38,14 +38,13 @@ public class AddDog extends AppCompatActivity {
 
     SharedPreferences preferences;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_dog);
         currentAuthUser = Amplify.Auth.getCurrentUser();
         userFuture = new CompletableFuture<>();
+        setUpHomeButton();
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -128,6 +127,14 @@ public class AddDog extends AppCompatActivity {
 
             Intent goToOwnProfileSettings = new Intent(AddDog.this, OwnProfileSettings.class);
             startActivity(goToOwnProfileSettings);
+        });
+    }
+
+    public void setUpHomeButton(){
+        Button homeButton = findViewById(R.id.addDogActivityHomeButton);
+        homeButton.setOnClickListener(view -> {
+            Intent goToMainActivity = new Intent(AddDog.this, MainActivity.class);
+            startActivity(goToMainActivity);
         });
     }
 
