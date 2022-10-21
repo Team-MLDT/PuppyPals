@@ -50,4 +50,5 @@ public class EditProfile extends AppCompatActivity {
             startActivity(goToProfileSettingsActivity);
         });
     }
+
 }

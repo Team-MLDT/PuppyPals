@@ -60,9 +60,6 @@
             android:name=".Activities.EditProfile"
             android:exported="false" />
         <activity
-            android:name=".Activities.OtherProfileSettings"
-            android:exported="false" />
-        <activity
             android:name=".Activities.OwnProfileSettings"
             android:exported="false" />
         <activity
