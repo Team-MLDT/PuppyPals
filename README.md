@@ -125,15 +125,3 @@ Every morning during review or as needed.
 - **How will you communicate that it’s time to merge?**
 We have a set time or we can discuss if it's pertinent or  as needed. 
 
-## Presentation Prep  
-
-Plan to have a dress rehearsal and plan out the presentation on thursday after our final merge.  We will also create slides during this time.  
-///TBD
-## Our pitch
-
-
-**What problem or pain point does it solve? a. Keep it high level without going into too much detail.**  
-
-
-**Minimum Viable Product (MVP) definition.
-What is the minimum required for you to present on your demo day?**  
