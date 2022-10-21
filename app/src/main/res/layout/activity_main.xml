@@ -29,4 +29,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/mainActivityEventsRecyclerView"
+        android:layout_width="394dp"
+        android:layout_height="418dp"
+        android:layout_marginTop="71dp"
+        android:background="@color/pink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/MainActivityDropdownButton" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
