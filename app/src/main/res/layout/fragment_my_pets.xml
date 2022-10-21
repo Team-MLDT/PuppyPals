@@ -13,62 +13,45 @@
         android:id="@+id/myPetsFragmentImage"
         android:layout_width="66dp"
         android:layout_height="62dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="329dp"
+        tools:layout_editor_absoluteY="45dp"
         tools:src="@tools:sample/avatars[2]" />
 
     <TextView
         android:id="@+id/myPetsFragmentName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="26dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginStart="16dp"
         android:text="Pet Name"
-        app:layout_constraintBottom_toTopOf="@+id/myPetsFragmentBreed"
-        app:layout_constraintStart_toEndOf="@+id/myPetsFragmentImage"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="20dp" />
 
     <TextView
         android:id="@+id/myPetsFragmentBreed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginEnd="69dp"
-        android:layout_marginBottom="30dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
         android:text="Pet Breed"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/myPetsFragmentBio"
-        app:layout_constraintStart_toEndOf="@+id/myPetsFragmentImage" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/myPetsFragmentName" />
 
     <TextView
         android:id="@+id/textView23"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="59dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="147dp"
         android:text="Bio:"
         android:textStyle="bold|italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/myPetsFragmentName"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="232dp"
+        tools:layout_editor_absoluteY="20dp" />
 
     <TextView
         android:id="@+id/myPetsFragmentBio"
         android:layout_width="131dp"
         android:layout_height="44dp"
-        android:layout_marginTop="6dp"
-        android:layout_marginEnd="48dp"
-        android:layout_marginBottom="19dp"
         android:text="Description of your dog"
         android:textSize="12sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView23" />
+        tools:layout_editor_absoluteX="232dp"
+        tools:layout_editor_absoluteY="45dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
