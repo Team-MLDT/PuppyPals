@@ -22,8 +22,10 @@ import com.amplifyframework.auth.AuthUser;
 import com.amplifyframework.core.Amplify;
 
 import com.amplifyframework.datastore.generated.model.User;
+import com.mldt.puppypals.LocationRequest;
 import com.mldt.puppypals.R;
 
+import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 
 
@@ -79,6 +81,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                     },
                     failureResponse -> Log.i(Tag, "Did not read Users successfully")
             );
+        }
+
+        try {
+            LocationRequest.getQuery();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

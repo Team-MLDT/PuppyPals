@@ -26,6 +26,17 @@ public class AddEvent extends AppCompatActivity {
     public static final String Tag = "Location";
     // Create the location client
     FusedLocationProviderClient fusedLocationClient;
+    String eventTitle = "";
+    String eventDate = "";
+    String eventTime = "";
+    String eventLat = "";
+    String eventLon = "";
+    String eventCity = "";
+    String eventState = "";
+    String eventZip = "";
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,20 +85,25 @@ public class AddEvent extends AppCompatActivity {
 
         Button addNewEventButton = findViewById(R.id.addEventActivitySaveButton);
         addNewEventButton.setOnClickListener(view -> {
-            String eventTitle = ((EditText) findViewById(R.id.addEventActivityTitleInput)).getText().toString();
-            String eventDate = ((EditText) findViewById(R.id.addEventActivityDateInput)).getText().toString();
+            eventTitle = ((EditText) findViewById(R.id.addEventActivityTitleInput)).getText().toString();
+            eventDate = ((EditText) findViewById(R.id.addEventActivityDateInput)).getText().toString();
+            eventTime = ((EditText) findViewById(R.id.addEventActivityTimeInput)).getText().toString();
+            eventLat = ((EditText) findViewById(R.id.addEventActivityLatitudeInput)).getText().toString();
+            eventLon = ((EditText) findViewById(R.id.addEventActivityLongitudeInput)).getText().toString();
+            eventCity = ((EditText) findViewById(R.id.addEventActivityCityInput)).getText().toString();
+            eventState = ((EditText) findViewById(R.id.addEventActivityStateInput)).getText().toString();
+            eventZip = ((EditText) findViewById(R.id.addEventActivityZipInput)).getText().toString();
 
             // class as API representation of location (only properties are lat & lon)
 
         });
 
         Event newEvent = Event.builder()
-                .eventDescription("Description")
-                .lat("Latitude")
-                .lon("Longitude")
-                .eventDate("Date")
-                .eventTime("Time")
-                .eventImageUrl("ImageUrl")
+                .eventDescription(eventTitle)
+                .lat(eventLat)
+                .lon(eventLon)
+                .eventDate(eventDate)
+                .eventTime(eventTime)
                 .build();
 
         Amplify.API.mutate(

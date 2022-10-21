@@ -103,10 +103,6 @@ public class AddDog extends AppCompatActivity {
             imageView.setImageURI(selectedImage);
         }
     }
-    //TODO: make this work
-//    private void setUpSaveButton(){
-//
-//    }
 
     private void setUpSubmitButton(){
         Button saveNewDogButton = findViewById(R.id.addDogActivitySaveBtn);
