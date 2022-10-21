@@ -40,9 +40,6 @@ public class OwnProfileSettings extends AppCompatActivity {
     TextView userNameTV;
     User currentUser;
     String userID = "";
-    //currentUser currently not assigned - should be set to the current session user's email address
-    //Set in shared preferences
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +48,8 @@ public class OwnProfileSettings extends AppCompatActivity {
 
         preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
-//        userID = preferences.getString(MainActivity.USER_ID_TAG,"");
-        userID = "0cfc51b2-41fe-4322-a79c-3054c780d096";
+        userID = preferences.getString(MainActivity.USER_ID_TAG,"");
+//        userID = "1f2d1472-b86f-4a47-b852-8e93bcf42f9c";
 
         Amplify.API.query(
                 ModelQuery.get(User.class,userID),
