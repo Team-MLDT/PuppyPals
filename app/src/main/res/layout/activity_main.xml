@@ -23,8 +23,10 @@
         android:id="@+id/mainActivityTestAddEventButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Button"
-        tools:layout_editor_absoluteX="17dp"
-        tools:layout_editor_absoluteY="15dp" />
+        android:layout_marginBottom="16dp"
+        android:text="Add Event"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -71,11 +71,11 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
                                 preferenceEditor.apply();
                             }
                         }
-                        
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
+
+                        runOnUiThread(new Runnable() {
+                            @Override
+                            public void run() {
+                                Toast.makeText(MainActivity.this, "Found user", Toast.LENGTH_SHORT).show();
                             }
                         });
                     },
@@ -88,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
         } catch (IOException e) {
             e.printStackTrace();
         }
+        setAddEventButton();
     }
 
     public void showPopup(View v) {
@@ -148,5 +149,12 @@ public class MainActivity extends AppCompatActivity implements PopupMenu.OnMenuI
     public void goToProfileActivity() {
         Intent goToProfile = new Intent(MainActivity.this, OwnProfileSettings.class);
         startActivity(goToProfile);
+    }
+
+    private void setAddEventButton() {
+        findViewById(R.id.mainActivityTestAddEventButton).setOnClickListener(view -> {
+            Intent goToAddEventActivity = new Intent(MainActivity.this, AddEvent.class);
+            startActivity(goToAddEventActivity);
+        });
     }
 }
