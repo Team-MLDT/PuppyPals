@@ -10,28 +10,33 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
         android:text="Event Details"
         android:textSize="20sp"
         android:textStyle="bold"
-        tools:layout_editor_absoluteX="147dp"
-        tools:layout_editor_absoluteY="32dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cardView"
         android:layout_width="410dp"
         android:layout_height="688dp"
+        android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"
         app:cardBackgroundColor="#93E5F5"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
 
         <TextView
             android:id="@+id/eventDetailActivityEventTitleTV"
             android:layout_width="wrap_content"
             android:layout_height="38dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="52dp"
+            android:layout_marginTop="72dp"
             android:layout_marginEnd="263dp"
             android:text="Event Title"
             android:textSize="24sp"
@@ -67,32 +72,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eventDetailActivityEventDateTV" />
 
-        <fragment xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:map="http://schemas.android.com/apk/res-auto"
+        <fragment
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="300dp"
             android:layout_height="300dp"
             android:layout_marginStart="32dp"
-            android:layout_marginTop="224dp"
+            android:layout_marginTop="200dp"
             android:layout_marginEnd="32dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:layout="@layout/fragment_maps" />
-
-        <Button
-            android:id="@+id/eventDetailActivityRSVPButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="32dp"
-            android:layout_marginEnd="184dp"
-            android:layout_marginBottom="32dp"
-            android:text="RSVP to this Event"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
